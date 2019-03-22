@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if (isset($_SESSION['language'])!=true) $_SESSION['language'] = 'russian';
 
@@ -21,13 +20,39 @@ class Pages extends CI_Controller {
 		$this->load->view('middle_view',$data);
 		$this->load->view('footer_view');
 	}
+
 	public function results($id=0)
 	{
+		// CAPTCHA start
+		$this->load->helper('captcha');
+		$vals = array(
+        'img_path'      => './assets/images/captcha/',
+        'img_url'       => base_url().'assets/images/captcha/',
+        'font_path'     => './path/to/fonts/texb.ttf',
+        'img_width'     => '130',
+        'img_height'    => 50,
+        'expiration'    => 300,
+        'word_length'   => 8,
+        'font_size'     => 100,
+        'img_id'        => 'Imageid',
+        'pool'          => '0123456789abcdefghijklmnopqrstuvwxyz',
+        'colors'        => array(
+                'background' => array(255, 255, 255),
+                'border' => array(0,207,239),
+                'text' => array(0, 0, 0),
+                'grid' => array(255, 40, 40)
+        )
+			);
+			$data = create_captcha($vals);
+			$_SESSION['captcha_key']=$data['word'];
+		// CAPTCHA start
+
 		$this->load->model('Get_model');
-		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
+
+		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
-		$this->load->view('results_view');
+		 $this->load->view('results_view',$data);
 		$this->load->view('footer_view');
 	}
 	public function uzi($id=0)
@@ -48,7 +73,7 @@ class Pages extends CI_Controller {
 		$this->load->view('phizio_view',$data);
 		$this->load->view('footer_view');
 	}
-	public function schedule($id=15)
+	public function schedule($id=16)
 	{
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
@@ -60,6 +85,7 @@ class Pages extends CI_Controller {
 	}
 	public function recipes($id=0)
 	{
+		$_SESSION['counter_medic']=0;
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['recipes_category'] = $this->Get_model->recipes_category();
@@ -69,7 +95,6 @@ class Pages extends CI_Controller {
 		$this->load->view('recipes_view',$data);
 		$this->load->view('footer_view');
 	}
-
 	public function staff($id=0)
 	{
 		$this->load->model('Get_model');
@@ -107,7 +132,9 @@ class Pages extends CI_Controller {
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 
 		$config['base_url'] = 'arhiv/';
-		$config['total_rows'] = $this->db->count_all('ex_page');
+		$this->db->from('ex_page');
+		$this->db->where('id_type_page', 1);
+		$config['total_rows'] = $this->db->count_all_results();
 		$config['url_segment'] = 3;
 		$config['per_page'] = 6;
 		$config['num_links'] = 2;
@@ -162,5 +189,15 @@ class Pages extends CI_Controller {
 		$this->load->view('header_view',$data);
 		$this->load->view('about_view',$data);
 		$this->load->view('footer_view');
+	}
+	public function check_captcha()
+	{	
+		$a=$this->input->post('text_captcha');
+		if ($a==$_SESSION['captcha_key']) {
+			echo '1';
+		}
+		else{
+			redirect(base_url('index.php/Pages/results'),'refresh');
+		}
 	}
 }	

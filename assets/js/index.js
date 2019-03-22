@@ -48,7 +48,7 @@ for (var i = 0; i < t1_li.length; i++) {
 function add_medicoment() { 
   this.className='list_none';  
   table_2.innerHTML += '<option id="'+$(this).attr("id")+'" value="'+this.value+'">'+$(this).text()+'</option>';
-  summa_medicoment=summa_medicoment+parseInt($(this.children[0]).text());
+  summa_medicoment = summa_medicoment + parseInt($(this.children[0]).text());
   r_s_m.innerHTML = summa_medicoment;
   var t2_o = document.querySelectorAll('.table_2_option option');
   for (var i = 0; i < t2_o.length; i++) {
@@ -61,14 +61,15 @@ function remove_medicoment() {
   var text2 = text1.match( /сом/i );
   var text3 = text2.index;
   var text_last = text1.lastIndexOf(' ', text3-3);
-  var text_price=text1.substr(text_last, text3);
+  var text_price = text1.substr(text_last, text3);
   var t1_li = document.querySelectorAll('.table_1_li li');
   for (var i = 0; i < t1_li.length; i++) {
     if ($(t1_li[i]).attr("id") == $(this).attr("id")) {
       t1_li[i].className='list_block';
     } 
   }
-  summa_medicoment=summa_medicoment-parseInt(text_price);
+  summa_medicoment = summa_medicoment - parseInt(text_price);
+  console.log(parseInt(text_price));
   r_s_m.innerHTML = summa_medicoment;
   table_2.removeChild(this); 
   var t1_li = document.querySelectorAll('.table_1_option li');
