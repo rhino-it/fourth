@@ -60,7 +60,7 @@ function remove_medicoment() {
   var text1 = $(this).text();
   var text2 = text1.match( /сом/i );
   var text3 = text2.index;
-  var text_last = text1.lastIndexOf(' ', text3-2);
+  var text_last = text1.lastIndexOf(' ', text3-3);
   var text_price=text1.substr(text_last, text3);
   var t1_li = document.querySelectorAll('.table_1_li li');
   for (var i = 0; i < t1_li.length; i++) {
