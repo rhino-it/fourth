@@ -1,4 +1,5 @@
 <div class="center-recipes">Регистрация пациента</div>	
+<form action="<?php echo base_url().'pages/example' ?>" method="POST" enctype="multipart/form-data" id="form">
 <div class="container">
 	<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 		<li class="nav-item">
@@ -18,10 +19,10 @@
 	<div class="tab-content" id="myTabContent">
 		<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="data-tab">
 			<div class="fio">
-				<form>
-					<div class="form-group" name="fio">
+				
+					<div class="form-group">
 						<label for="name">ФИО:</label>
-						<input type="text" onchange="show2()" class="form-control" list="name" aria-describedby="emailHelp" placeholder="Азаматович">
+						<input type="text" onchange="show2()" class="form-control" list="name" name="fio" aria-describedby="emailHelp" placeholder="Азаматович">
 							<datalist id="name" >
 
 							<?php for ($i=1; $i <10; $i++) { 
@@ -31,22 +32,22 @@
 							</datalist>
 							<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 						</div>
-						<div class="form-group" name="birthday">
+						<div class="form-group" >
 							<label for="birthday">Дата рождения:</label>
-							<input type="date" class="form-control" id="birthday">
+							<input type="date" class="form-control" id="birthday" name="birthday">
 						</div>
-						<div class="form-group" name="address">
+						<div class="form-group" >
 							<label for="address">Домашний адрес:</label>
-							<input type="text" class="form-control" id="address">
+							<input type="text" class="form-control" id="address" name="address">
 						</div>
 
-						<div class="form-group" name="phone.number">
+						<div class="form-group" >
 							<label for="phone.number">Номер телефона:</label>
-							<input type="tel" class="form-control" id="phone.number">
+							<input type="tel" class="form-control" id="phone.number" name="phone_number">
 						</div>
 
 						<a class="btn btn-primary"  onclick="getElementById('price-tab').click();" style="color: #fff;">Далее &rarr; </a>
-					</form>
+					
 
 				</div> 
 
@@ -54,15 +55,15 @@
 
 			<script type="text/javascript">
 
-				function show2() {
-					alert('confirmed');
-				}
+				// function show2() {
+				// 	alert('confirmed');
+				// }
 
 			</script>
 		
 			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="price-tab">
 				<div class="padding">
-					<form>
+					
 						<div class="row justify-content-between no-gutters">
 						<div class="form-group col-md-5">
 							<label for="exampleFormControlSelect1">Выберите категорию анализа</label>
@@ -89,8 +90,8 @@
 						</div>
 						<div class="form-group col-md-5">
 							<label for="exampleFormControlSelect2">Выбранный вид анализа</label>
-							<select size="5" multiple class="form-control table_2_option" id="selected_analys">
-
+							<select  size="5" multiple class="form-control table_2_option" id="selected_analys">
+								
 							</select>
 						</div>
 						</div>
@@ -98,17 +99,17 @@
 					<div class="row justify-content-end">
 					  <div class="form-group col-md-5">
 					    <div class="justify-content-end">				
-					    	<div class="text-right font-weight-bold h4">Итого: <span id="result_summa_medicoment">0</span> сом</div>		 
+					    	<div class="text-right font-weight-bold h4">Итого: <span id="result_summa_medicoment">0</span> сом</div>		
 					  	</div>
 						</div>					
 					</div>
 					
 					<div class="d-flex justify-content-between w-100 pb-4">
 					<a class="btn btn-primary" onclick="getElementById('data-tab').click();" style="color: #fff;" > &larr; Назад</a>
-					<a class="btn btn-primary" style="color: #fff;" >Зарегистрировать</a>
+					<a class="btn btn-primary" onclick="document.forms['form'].submit();" style="color: #fff;" >Зарегистрировать</a>	
 				   </div>
 				
-					</form>
+					
 					</div>
 			</div>
 				
@@ -117,3 +118,4 @@
 		</div>
 
 	</div>
+</form>
