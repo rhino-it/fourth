@@ -190,6 +190,7 @@ class Pages extends CI_Controller {
 		$this->load->view('about_view',$data);
 		$this->load->view('footer_view');
 	}
+
 	public function check_captcha()
 	{	
 		$a=$this->input->post('text_captcha');
@@ -200,4 +201,32 @@ class Pages extends CI_Controller {
 			redirect(base_url('index.php/Pages/results'),'refresh');
 		}
 	}
+
+
+
+		public function example()
+	{
+		echo $_POST['fio'].'<br>';
+		echo $_POST['birthday'].'<br>';
+		echo $_POST['address'].'<br>';
+		echo $_POST['phone_number'];
+
+
+
+
+		
+		
+	}
+
+	   //     function insert($id)
+    // {   
+    //     $data['e_mail'] = $_POST['fio']; 
+    //     $data['e_mail']  = $_POST['birthday'];
+    //     $data['e_mail']  = $_POST['address'];
+    //     $data['e_mail']  = $_POST['phone.number'];
+        
+    //     $this->db->insert('assasas', $data);
+    // }
+
+
 }	
