@@ -1,5 +1,5 @@
 <div class="center-recipes">Регистрация пациента</div>	
-<form action="<?php echo base_url().'pages/example' ?>" method="POST" enctype="multipart/form-data" id="form">
+<form action="<?php echo base_url('index.php/Pages/medicoment_insert'); ?>" method="POST" enctype="multipart/form-data" id="form">
 <div class="container">
 	<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
 		<li class="nav-item">
@@ -22,7 +22,7 @@
 				
 					<div class="form-group">
 						<label for="name">ФИО:</label>
-						<input type="text" onchange="show2()" class="form-control" list="name" name="fio" aria-describedby="emailHelp" placeholder="Азаматович">
+						<input type="text" onchange="show2()" class="form-control" name="fio" aria-describedby="emailHelp" placeholder="Азаматович">
 							<datalist id="name" >
 
 							<?php for ($i=1; $i <10; $i++) { 
@@ -105,17 +105,12 @@
 					</div>
 					
 					<div class="d-flex justify-content-between w-100 pb-4">
-					<a class="btn btn-primary" onclick="getElementById('data-tab').click();" style="color: #fff;" > &larr; Назад</a>
-					<a class="btn btn-primary" onclick="document.forms['form'].submit();" style="color: #fff;" >Зарегистрировать</a>	
-				   </div>
-				
-					
-					</div>
+						<a class="btn btn-primary" onclick="getElementById('data-tab').click();" style="color: #fff;" > &larr; Назад</a>
+						<a class="btn btn-primary" onclick="click_medic_end()" style="color: #fff;" >Зарегистрировать</a>	
+				  </div>					
+				</div>
 			</div>
-				
-	
-
 		</div>
-
 	</div>
 </form>
+<!-- <form id="med_insert" method="POST" action="<?php echo base_url('index.php/Pages/medicoment_insert'); ?>"></form> -->
