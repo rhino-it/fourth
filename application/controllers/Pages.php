@@ -131,38 +131,43 @@ class Pages extends CI_Controller {
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 
-		$config['base_url'] = 'arhiv/';
-		$this->db->from('ex_page');
-		$this->db->where('id_type_page', 1);
-		$config['total_rows'] = $this->db->count_all_results();
-		$config['url_segment'] = 3;
-		$config['per_page'] = 6;
-		$config['num_links'] = 2;
+		$config['base_url'] = base_url() . 'pages/arhiv/';
 
-		$config['first_tag_open'] = '<li>';
-		$config['first_tag_close'] = '</li>';
+	
+		$query =$this->db->query('SELECT * FROM ex_page WHERE id_type_page=1');
 
-		$config['last_tag_open'] = '<li>';
-		$config['last_tag_close'] = '</li>';
+        $config['total_rows'] = $query->num_rows();
+         // ex_page таблицасында канча жазуу бар
+         $config['url_segment'] = 3;
+         $config['per_page'] = 6;
+         $config['num_links'] = 3;
 
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
+         $config['first_tag_open'] = '<li>';
+         $config['first_tag_close'] = '</li>';
 
-		$config['next_tag_open'] = '<li>';
-		$config['next_tag_close'] = '</li>';
+         $config['last_tag_open'] = '<li>';
+         $config['last_tag_close'] = '</li>';
 
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
+         $config['prev_tag_open'] = '<li>';
+         $config['prev_tag_close'] = '</li>';
 
-		$config['cur_tag_open'] = '<li class="active"><a href="#">';
-		$config['cur_tag_close'] = '</a></li>';
+         $config['next_tag_open'] = '<li>';
+         $config['next_tag_close'] = '</li>';
 
-		$config['first_link'] = 'Первая';
-		$config['last_link'] = 'Последняя';
+         $config['num_tag_open'] = '<li>';
+         $config['num_tag_close'] = '</li>';
 
-		$this->pagination->initialize($config);
-		$data['arhiv'] = $this->Get_model->arhiv($config['per_page'],$this->uri->segment(3));
+         $config['cur_tag_open'] = '<li class="active"><a href="#">';
+         $config['cur_tag_close'] = '</a></li>';
 
+         $config['first_link'] = 'First';
+         $config['last_link'] = 'Last';
+
+         $this->pagination->initialize($config);
+         
+         $data['arhiv'] = $this ->Get_model->arhiv($config['per_page'], $this->uri->segment(3));
+
+	
 		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
 		$this->load->view('arhiv_view',$data);
@@ -199,6 +204,52 @@ class Pages extends CI_Controller {
 		else{
 			redirect(base_url('index.php/Pages/results'),'refresh');
 		}
+	}
+	public function patients($id=0)
+	{
+		$this->load->model('Get_model');
+		$data['main_menu'] = $this->Get_model->md_menu(1);
+		
+
+
+
+		$config['base_url'] = base_url() . 'pages/patients/';
+         $config['total_rows'] = $this->db->count_all('ex_medic_patient_data');
+         // ex_page таблицасында канча жазуу бар
+         $config['url_segment'] = 3;
+         $config['per_page'] = 6;
+         $config['num_links'] = 3;
+
+         $config['first_tag_open'] = '<li>';
+         $config['first_tag_close'] = '</li>';
+
+         $config['last_tag_open'] = '<li>';
+         $config['last_tag_close'] = '</li>';
+
+         $config['prev_tag_open'] = '<li>';
+         $config['prev_tag_close'] = '</li>';
+
+         $config['next_tag_open'] = '<li>';
+         $config['next_tag_close'] = '</li>';
+
+         $config['num_tag_open'] = '<li>';
+         $config['num_tag_close'] = '</li>';
+
+         $config['cur_tag_open'] = '<li class="active"><a href="#">';
+         $config['cur_tag_close'] = '</a></li>';
+
+         $config['first_link'] = 'First';
+         $config['last_link'] = 'Last';
+
+         $this->pagination->initialize($config);
+         
+         $data['ex_medic_patient_data'] = $this ->Get_model->pagination_services($config['per_page'], $this->uri->segment(3));
+
+
+		$this->load->view('head_view');
+		$this->load->view('header_view',$data);
+		$this->load->view('all_view',$data);
+		$this->load->view('footer_view');
 	}
 	public function medicoment_insert(){
 		$this->load->model('Get_model');		
@@ -247,6 +298,16 @@ class Pages extends CI_Controller {
 		);
 		$this->db->insert('ex_medic_patient', $data);
 
+		
+		$data=array(
+			'id_patient' => $id_max,
+			'data' => date("Y-m-d"),
+			'md5' => md5(random_string('alnum',8)),
+			'sum' => $sum,
+		);
+		$this->db->insert('ex_medic_patient_data', $data);
+		redirect(base_url('index.php/Pages/patients'),'refresh');
+
 			$data=array(
 				'id_patient' => $id_max,
 				'data' => date("Y-m-d"),
@@ -260,6 +321,7 @@ class Pages extends CI_Controller {
 			redirect(base_url('index.php/Pages/medicoment_insert'),'refresh');
 		}
 	}
+
 	else{
 		redirect(base_url('index.php/Pages/recipes'),'refresh');
 	}
