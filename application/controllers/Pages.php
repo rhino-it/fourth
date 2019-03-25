@@ -201,6 +201,48 @@ class Pages extends CI_Controller {
 			redirect(base_url('index.php/Pages/results'),'refresh');
 		}
 	}
+	public function patients($id=0)
+	{
+		$this->load->model('Get_model');
+		$data['main_menu'] = $this->Get_model->md_menu(1);
+		$data['patients'] = $this->Get_model->patients();
+
+
+		// $config['base_url'] = 'http://mkmc.kgz/index.php/Pages/patients/';
+		// $config['total_rows'] = $this->db->count_all('ex_medic_patient_data');
+		// $config['url_segment'] = 3;
+		// $config['per_page'] = 2;
+		// $config['num_links'] = 2;
+
+		// $config['first_tag_open'] = '<li>';
+		// $config['first_tag_close'] = '</li>';
+
+		// $config['last_tag_open'] = '<li>';
+		// $config['last_tag_close'] = '</li>';
+
+		// $config['prev_tag_open'] = '<li>';
+		// $config['prev_tag_close'] = '</li>';
+
+		// $config['next_tag_open'] = '<li>';
+		// $config['next_tag_close'] = '</li>';
+
+		// $config['num_tag_open'] = '<li>';
+		// $config['num_tag_close'] = '</li>';
+
+		// $config['cur_tag_open'] = '<li class="active"><a href="#">';
+		// $config['cur_tag_close'] = '</a></li>';
+
+		// $config['first_link'] = 'Первая';
+		// $config['last_link'] = 'Последняя';
+
+		// $this->pagination->initialize($config);
+		// $data['patients'] = $this->Get_model->patients($config['per_page'],$this->uri->segment(4));
+
+		$this->load->view('head_view');
+		$this->load->view('header_view',$data);
+		$this->load->view('all_view',$data);
+		$this->load->view('footer_view');
+	}
 
 
 

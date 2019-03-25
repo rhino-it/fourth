@@ -70,7 +70,12 @@ class Get_model extends CI_Model {
          $query = $this->db->get('ex_medic_list_of_analisys');
         return $query->result_array();
     }
-    
+     function patients($id=0) {
+             $query = $this->db->order_by('id', 'DESC');
+           
+            $query = $this->db->get('ex_medic_patient_data');
+            return $query->result_array();
+    }
 
 
 
