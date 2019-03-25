@@ -4,10 +4,10 @@ $i = 0;
 $ar[1][$i]='';
 $ar[2][$i]='';
 foreach ($ex_type_page as $item) {
-    $i++;
-    $ar[1][$i] = $item['name_' . $_SESSION['ex_lg']];
-    $ar[2][$i] = $item['style'];
+    $ar[1][$item['id']] = $item['name_' . $_SESSION['ex_lg']];
+    $ar[2][$item['id']] = $item['style'];
 }
+
 ?>					
 <div class="wrapper">
     <div class="row">

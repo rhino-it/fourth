@@ -134,7 +134,7 @@ class Adminex extends CI_Controller {
 
         $data_select['ex_pages'] = $this->Select_model->pagination_pages($config['per_page'], $this->uri->segment(3));
         $data_select['ex_type_page'] = $this->Select_model->type_page();
-
+        
 
         $data_select['k'] = 'Салам';
         $data_select['ex_menu1'] = 'm20';

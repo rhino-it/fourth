@@ -113,4 +113,3 @@
 		</div>
 	</div>
 </form>
-<!-- <form id="med_insert" method="POST" action="<?php echo base_url('index.php/Pages/medicoment_insert'); ?>"></form> -->

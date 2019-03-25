@@ -1,25 +1,43 @@
 <div class="center-recipes">Список пациентов</div>	
 <div class="container">
-		
-		<?php foreach ($patients as $patients) {
-		 ?>
-		 <div class="patients_border">
-		 <div class="row">
-		<div class="col-1"><?php echo $patients['id']; ?></div>
-		<div class="col-3"><?php echo $patients['id_patient']; ?></div>
-		<div class="col-2"><?php echo $patients['data']; ?></div>
-		<div class="col-2"><?php echo $patients['result']; ?></div>
-		<div class="col-2"><?php echo $patients['md5']; ?></div>
-		<div class="col-2"><?php echo $patients['sum']; ?> сом</div>
-		</div></div>
-	<?php  }?>
-		<div class="pagination_user">
-			<ul>
-				<?php
-					echo $this->pagination->create_links();
-				?>
-			</ul>
-		</div>
-	
 
-</div>
+
+
+	<table class="table">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">ФИО</th>
+				<th scope="col">Дата</th>
+				<th scope="col">PDF результат</th>
+				<th scope="col">Кодовое слово</th>
+				<th scope="col">Итоговоая сумма</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($ex_medic_patient_data as $patients) {
+				$this->db->where('id', $patients['id_patient']);
+				$row = $this->db->get('ex_medic_patient')->row();	   	
+				?>
+				<tr>
+					<th scope="row"><?php echo $patients['id']; ?></th>
+					<td><?php echo $row->name; ?></td>
+					<td><?php echo $patients['data']; ?></td>
+					<td><?php echo $patients['result']; ?></td>
+					<td><?php echo $patients['md5']; ?></td>
+					<td><?php echo $patients['sum']; ?> сом</td>
+				</tr>
+			<?php  }?>
+
+
+		</tbody>
+
+	</table>
+	<div class="pagination_user">
+		<ul>
+			<?php
+			echo $this->pagination->create_links();
+			?>
+		</ul>
+	</div>
+	</div>

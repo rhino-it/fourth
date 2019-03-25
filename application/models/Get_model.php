@@ -19,11 +19,7 @@ class Get_model extends CI_Model {
             $query = $this->db->get('ex_page');
             return $query->result_array();
     }
-    // function medicoment_sql_zapros($id_medic) {
-    //         $query = $this->db->where('id', $id_medic);
-    //         $query = $this->db->get('ex_medic_list_of_analisys');
-    //         return $query->result_array();
-    // }
+
     function main_page_news() {
             $query = $this->db->limit(3);
             $query = $this->db->where('id_type_page', 1);
@@ -77,20 +73,17 @@ class Get_model extends CI_Model {
     }
      function patients($id=0) {
              $query = $this->db->order_by('id', 'DESC');
-           
             $query = $this->db->get('ex_medic_patient_data');
             return $query->result_array();
     }
 
+    function pagination_services($num, $offset)
+    {   
+         $this->db->order_by('id', 'DESC');
+        $query = $this->db->get('ex_medic_patient_data', $num, $offset);
+        return $query->result_array();
+    }
 
 
-    // function  recipes_uslugi(){
-    //  // $query = $this->db->where('id_parent', 0);
-    //  $query = $this->db->get('ex_medic_list_of_analisys');
-    //  return $query->result_array();     
-    // }
-    // function  recipes_medicoment(){     
-    //  $query = $this->db->get('ex_medic_list_of_analisys');
-    //  return $query->result_array();     
-    // }
+   
 } 
