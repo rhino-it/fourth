@@ -196,8 +196,7 @@ class Pages extends CI_Controller {
 		$this->load->view('footer_view');
 	}
 
-	public function check_captcha()
-	{	
+	public function check_captcha()	{	
 		$a=$this->input->post('text_captcha');
 		if ($a==$_SESSION['captcha_key']) {
 			echo '1';
@@ -252,16 +251,26 @@ class Pages extends CI_Controller {
 		$this->load->view('all_view',$data);
 		$this->load->view('footer_view');
 	}
-
 	public function medicoment_insert(){
 		$this->load->model('Get_model');		
 		$this->load->helper('string');
-				
+		if (isset($_POST['fio'])!=' ' && isset($_POST['birthday'])!=' ' && isset($_POST['phone_number'])!=' ' && isset($_POST['address'])!=' ' && isset($_POST['q0'])!=' ') {
 		$count_i=$this->input->post('count_i');
 		$id_max=0;
 		$sum=0;
 
-		// 1 version start
+		for ($i=0; $i <= $count_i; $i++) { 
+			$_SESSION['q'.$i]=$this->input->post('q'.$i);
+		}
+		$_SESSION['name'] = $this->input->post('fio');
+		$_SESSION['birthday'] = $this->input->post('birthday');
+		$_SESSION['phone_number'] = $this->input->post('phone_number');
+		$_SESSION['address'] = $this->input->post('address');
+
+		$random_code=random_string('alnum',8);
+		$data['code_check'] = $this->Get_model->code_check($random_code);
+
+		if ($data['code_check']==0) {
 		$this->db->select_max('id');
 		$query = $this->db->get('ex_medic_patient');
 		foreach ($query->result_array() as $q3) {
@@ -269,8 +278,7 @@ class Pages extends CI_Controller {
 		}
 		$id_max+=1;
 		for ($i=0; $i < $count_i; $i++) { 
-			$id_medic=$this->input->post('q'.$i);
-			$query = $this->db->get_where('ex_medic_list_of_analisys', array('id' => $id_medic));
+			$query = $this->db->get_where('ex_medic_list_of_analisys', array('id' => $_SESSION['q'.$i]));
 			foreach ($query->result_array() as $q1) {
 				$data=array(
 					'id_data' => $id_max,
@@ -283,12 +291,13 @@ class Pages extends CI_Controller {
 		}
 
 		$data=array(
-			'name' => $this->input->post('fio'),
-			'birthday' => $this->input->post('birthday'),
-			'phone_number' => $this->input->post('phone_number'),
-			'address' => $this->input->post('address'),
+			'name' => $_SESSION['name'],
+			'birthday' => $_SESSION['birthday'],
+			'phone_number' => $_SESSION['phone_number'],
+			'address' => $_SESSION['address'],
 		);
 		$this->db->insert('ex_medic_patient', $data);
+
 		
 		$data=array(
 			'id_patient' => $id_max,
@@ -298,29 +307,23 @@ class Pages extends CI_Controller {
 		);
 		$this->db->insert('ex_medic_patient_data', $data);
 		redirect(base_url('index.php/Pages/patients'),'refresh');
-		// 1 version end
 
-		// 2 version start
-		for ($i=0; $i < $count_i; $i++) { 
-
-			// $id_medic=$this->input->post('q'.$i);
-			// $data['medicoment_sql_zapros'] = $this->Get_model->medicoment_sql_zapros($id_medic);
-			// foreach ($data['medicoment_sql_zapros'] as $m_s_z) {
-			// 	echo $m_s_z['id'].'-'.$m_s_z['price'].'<br>';
-			// }
-
-		// $data=array(
-		// 	'name' => $this->input->post('fio'),
-		// 	'birthday' => $this->input->post('birthday'),
-		// 	'phone_number' => $this->input->post('phone_number'),
-		// 	'address' => $this->input->post('address'),
-		// );
-		// $this->db->insert('ex_medic_patient', $data);
-
+			$data=array(
+				'id_patient' => $id_max,
+				'data' => date("Y-m-d"),
+				'md5' => $random_code,
+				'sum' => $sum,
+			);
+			$this->db->insert('ex_medic_patient_data', $data);
+			redirect(base_url('index.php/Pages/recipes'),'refresh');					
+			}				
+		else{
+			redirect(base_url('index.php/Pages/medicoment_insert'),'refresh');
 		}
-		// 2 version end
-
 	}
-	
 
+	else{
+		redirect(base_url('index.php/Pages/recipes'),'refresh');
+	}
+}
 }	
