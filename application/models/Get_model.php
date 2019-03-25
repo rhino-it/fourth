@@ -19,6 +19,11 @@ class Get_model extends CI_Model {
             $query = $this->db->get('ex_page');
             return $query->result_array();
     }
+    // function medicoment_sql_zapros($id_medic) {
+    //         $query = $this->db->where('id', $id_medic);
+    //         $query = $this->db->get('ex_medic_list_of_analisys');
+    //         return $query->result_array();
+    // }
     function main_page_news() {
             $query = $this->db->limit(3);
             $query = $this->db->where('id_type_page', 1);

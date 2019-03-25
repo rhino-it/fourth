@@ -69,7 +69,6 @@ function remove_medicoment() {
     } 
   }
   summa_medicoment = summa_medicoment - parseInt(text_price);
-  console.log(parseInt(text_price));
   r_s_m.innerHTML = summa_medicoment;
   table_2.removeChild(this); 
   var t1_li = document.querySelectorAll('.table_1_option li');
@@ -78,6 +77,27 @@ function remove_medicoment() {
   }
 }
 }
+
+function click_medic_end(){
+  var count_i=0;
+  var t2_o = document.querySelectorAll('.table_2_option option');
+  for (var i = 0; i < t2_o.length; i++) {
+    var inp =  document.createElement('input');
+    inp.name = 'q'+i;
+    inp.value = t2_o[i].value;  
+    inp.type = 'hidden';
+    form.appendChild(inp);
+    count_i=i;
+  } 
+  var inp =  document.createElement('input');
+  inp.name = 'count_i';
+  inp.type = 'hidden';
+  inp.value = count_i+1;
+  form.appendChild(inp);
+
+  document.forms["form"].submit();
+}
+
 // list medicoment end
 
 

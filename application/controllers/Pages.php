@@ -244,22 +244,81 @@ class Pages extends CI_Controller {
 		$this->load->view('footer_view');
 	}
 
+	public function medicoment_insert(){
+		$this->load->model('Get_model');		
+		$this->load->helper('string');
+				
+		$count_i=$this->input->post('count_i');
+		$id_max=0;
+		$sum=0;
 
+		// 1 version start
+		$this->db->select_max('id');
+		$query = $this->db->get('ex_medic_patient');
+		foreach ($query->result_array() as $q3) {
+			$id_max=$q3['id'];
+		}
+		$id_max+=1;
+		for ($i=0; $i < $count_i; $i++) { 
+			$id_medic=$this->input->post('q'.$i);
+			$query = $this->db->get_where('ex_medic_list_of_analisys', array('id' => $id_medic));
+			foreach ($query->result_array() as $q1) {
+				$data=array(
+					'id_data' => $id_max,
+					'id_analysys' => $q1['id'],
+					'price' => $q1['price'],
+				);
+				$this->db->insert('ex_medic_patient_analysys', $data);
+				$sum+=$q1['price'];
+			}
+		}
 
-		public function example()
-	{
-		echo $_POST['fio'].'<br>';
-		echo $_POST['birthday'].'<br>';
-		echo $_POST['address'].'<br>';
-		echo $_POST['phone_number'];
-
-
-
-
+		$data=array(
+			'name' => $this->input->post('fio'),
+			'birthday' => $this->input->post('birthday'),
+			'phone_number' => $this->input->post('phone_number'),
+			'address' => $this->input->post('address'),
+		);
+		$this->db->insert('ex_medic_patient', $data);
 		
-		
+		$data=array(
+			'id_patient' => $id_max,
+			'data' => date("Y-m-d"),
+			'md5' => md5(random_string('alnum',8)),
+			'sum' => $sum,
+		);
+		$this->db->insert('ex_medic_patient_data', $data);
+		redirect(base_url('index.php/Pages/recipes'),'refresh');
+		// 1 version end
+
+		// 2 version start
+		for ($i=0; $i < $count_i; $i++) { 
+
+			// $id_medic=$this->input->post('q'.$i);
+			// $data['medicoment_sql_zapros'] = $this->Get_model->medicoment_sql_zapros($id_medic);
+			// foreach ($data['medicoment_sql_zapros'] as $m_s_z) {
+			// 	echo $m_s_z['id'].'-'.$m_s_z['price'].'<br>';
+			// }
+
+		// $data=array(
+		// 	'name' => $this->input->post('fio'),
+		// 	'birthday' => $this->input->post('birthday'),
+		// 	'phone_number' => $this->input->post('phone_number'),
+		// 	'address' => $this->input->post('address'),
+		// );
+		// $this->db->insert('ex_medic_patient', $data);
+
+		}
+		// 2 version end
+
 	}
-
+	// public function example()
+	// {
+	// 	echo $_POST['fio'].'<br>';
+	// 	echo $_POST['birthday'].'<br>';
+	// 	echo $_POST['address'].'<br>';
+	// 	echo $_POST['phone_number'];
+	// }
 	   //     function insert($id)
     // {   
     //     $data['e_mail'] = $_POST['fio']; 
@@ -269,6 +328,5 @@ class Pages extends CI_Controller {
         
     //     $this->db->insert('assasas', $data);
     // }
-
 
 }	
