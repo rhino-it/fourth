@@ -136,8 +136,7 @@ class Pages extends CI_Controller {
 	
 		$query =$this->db->query('SELECT * FROM ex_page WHERE id_type_page=1');
 
-        $config['total_rows'] = $query->num_rows();
-         // ex_page таблицасында канча жазуу бар
+        $config['total_rows'] = $query->num_rows(); 
          $config['url_segment'] = 3;
          $config['per_page'] = 6;
          $config['num_links'] = 3;
@@ -265,28 +264,28 @@ class Pages extends CI_Controller {
 
 
 		$random_code=random_string('alnum',8);
-		$data['code_check'] = $this->Get_model->code_check($random_code);
+		$data['code_check'] = $this->Get_model->code_md5_check($random_code);
 
 		if ($data['code_check']==0) {
-		// $this->db->select_max('id');
-		// $query = $this->db->get('ex_medic_patient');
-		// foreach ($query->result_array() as $q3) {
-		// 	$id_max=$q3['id'];
-		// }
-		// $id_max+=1;
+		$this->db->select_max('id');
+		$query = $this->db->get('ex_medic_patient');
+		foreach ($query->result_array() as $q3) {
+			$id_max=$q3['id'];
+		}
+		$id_max+=1;
 
-		// for ($i=0; $i < $count_i; $i++) { 
-		// 	$query = $this->db->get_where('ex_medic_list_of_analisys', array('id' => $_SESSION['q'.$i]));
-		// 	foreach ($query->result_array() as $q1) {
-		// 		$data=array(
-		// 			'id_data' => $id_max,
-		// 			'id_analysys' => $q1['id'],
-		// 			'price' => $q1['price'],
-		// 		);
-		// 		$this->db->insert('ex_medic_patient_analysys', $data);
-		// 		$sum+=$q1['price'];
-		// 	}
-		// }
+		for ($i=0; $i < $count_i; $i++) { 
+			$query = $this->db->get_where('ex_medic_list_of_analisys', array('id' => $_SESSION['q'.$i]));
+			foreach ($query->result_array() as $q1) {
+				$data=array(
+					'id_data' => $id_max,
+					'id_analysys' => $q1['id'],
+					'price' => $q1['price'],
+				);
+				$this->db->insert('ex_medic_patient_analysys', $data);
+				$sum+=$q1['price'];
+			}
+		}
 
 		$data=array(
 			'name' => $_SESSION['name'],
@@ -295,7 +294,9 @@ class Pages extends CI_Controller {
 			'address' => $_SESSION['address'],
 		);
 		$this->db->insert('ex_medic_patient', $data);
-
+		// $insert=$this->Get_model->insert($data);
+		// echo $this->Get_model->get_last_id();
+ 	
 		
 		$data=array(
 			'id_patient' => $id_max,
