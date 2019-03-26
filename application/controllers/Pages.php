@@ -209,13 +209,8 @@ class Pages extends CI_Controller {
 	{
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
-		
-
-
-
 		$config['base_url'] = base_url() . 'pages/patients/';
          $config['total_rows'] = $this->db->count_all('ex_medic_patient_data');
-         // ex_page таблицасында канча жазуу бар
          $config['url_segment'] = 3;
          $config['per_page'] = 6;
          $config['num_links'] = 3;
@@ -254,10 +249,7 @@ class Pages extends CI_Controller {
 	public function medicoment_insert(){
 		$this->load->model('Get_model');		
 		$this->load->helper('string');
-		if (isset($_POST['fio'])!=' ' && isset($_POST['birthday'])!=' ' && isset($_POST['phone_number'])!=' ' && isset($_POST['address'])!=' ' && isset($_POST['q0'])!=' ') {
 		$count_i=$this->input->post('count_i');
-		$id_max=0;
-		$sum=0;
 
 		for ($i=0; $i <= $count_i; $i++) { 
 			$_SESSION['q'.$i]=$this->input->post('q'.$i);
@@ -267,28 +259,34 @@ class Pages extends CI_Controller {
 		$_SESSION['phone_number'] = $this->input->post('phone_number');
 		$_SESSION['address'] = $this->input->post('address');
 
+		if (isset($_SESSION['name'])!='' && isset($_SESSION['birthday'])!='' && isset($_SESSION['phone_number'])!='' && isset($_SESSION['address'])!='' && isset($_SESSION['q0'])!='') {
+		$id_max=0;
+		$sum=0;
+
+
 		$random_code=random_string('alnum',8);
 		$data['code_check'] = $this->Get_model->code_check($random_code);
 
 		if ($data['code_check']==0) {
-		$this->db->select_max('id');
-		$query = $this->db->get('ex_medic_patient');
-		foreach ($query->result_array() as $q3) {
-			$id_max=$q3['id'];
-		}
-		$id_max+=1;
-		for ($i=0; $i < $count_i; $i++) { 
-			$query = $this->db->get_where('ex_medic_list_of_analisys', array('id' => $_SESSION['q'.$i]));
-			foreach ($query->result_array() as $q1) {
-				$data=array(
-					'id_data' => $id_max,
-					'id_analysys' => $q1['id'],
-					'price' => $q1['price'],
-				);
-				$this->db->insert('ex_medic_patient_analysys', $data);
-				$sum+=$q1['price'];
-			}
-		}
+		// $this->db->select_max('id');
+		// $query = $this->db->get('ex_medic_patient');
+		// foreach ($query->result_array() as $q3) {
+		// 	$id_max=$q3['id'];
+		// }
+		// $id_max+=1;
+
+		// for ($i=0; $i < $count_i; $i++) { 
+		// 	$query = $this->db->get_where('ex_medic_list_of_analisys', array('id' => $_SESSION['q'.$i]));
+		// 	foreach ($query->result_array() as $q1) {
+		// 		$data=array(
+		// 			'id_data' => $id_max,
+		// 			'id_analysys' => $q1['id'],
+		// 			'price' => $q1['price'],
+		// 		);
+		// 		$this->db->insert('ex_medic_patient_analysys', $data);
+		// 		$sum+=$q1['price'];
+		// 	}
+		// }
 
 		$data=array(
 			'name' => $_SESSION['name'],
