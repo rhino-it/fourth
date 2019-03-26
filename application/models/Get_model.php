@@ -82,4 +82,14 @@ class Get_model extends CI_Model {
         $query = $this->db->get('ex_medic_patient_data', $num, $offset);
         return $query->result_array();
     }
+    function code_check($num, $offset)    {   
+         $this->db->order_by('id', 'DESC');
+        $query = $this->db->get('ex_medic_patient_data', $num, $offset);
+        return $query->result_array();
+    }
+    function code_md5_check($random_code) {
+        $query = $this->db->where('md5',$random_code);
+        $query = $this->db->get('ex_medic_patient_data');   
+        return $query->num_rows();
+    }
 } 
