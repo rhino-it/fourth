@@ -15,7 +15,7 @@
 										<div class="box">
 											<div class="title">Кодовое слово</div>				
 											<div class="inp">
-												<input id="code" type="text" class="form-control" placeholder="Введите кодовое слово">
+												<input id="code" type="text" class="form-control" name="Codeword" placeholder="Введите кодовое слово">
 											</div>										
 										</div>
 									</div>
@@ -37,7 +37,7 @@
 								</div>
 								<div class="col-md-6 col-sm-12 col-xs-12">
 									<div class="mb-4 col-md-12">
-										<div class="box">
+										<div class="box box_1">
 											<div class="title">
 											Получить результаты на почту	
 											<span class="check_box">

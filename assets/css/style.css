@@ -40,6 +40,10 @@ ul {
 .rightline a {
   padding: 0px 10px;
 }
+.rightline .red{
+  font-weight: bold;
+  color: #173082;
+}
 .register {
   border-left: 1px solid #fff;
 }
@@ -507,6 +511,9 @@ ul {
   .results .results_footer .box_last {
     height: 215px;
   }
+  .results .results_footer .box_1 {
+    height: 140px;
+  }
   .results .results_footer .box_last img {
     border: 3px solid #87ceeb;
     width: 70%;
@@ -668,6 +675,7 @@ ul {
   height: 540px;
   box-shadow: 0 0 10px #bababa;
   text-align: center;
+  cursor: pointer;
 }
 .paddding .content-doc .img {
   height: 300px;
