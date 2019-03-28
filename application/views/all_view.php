@@ -12,6 +12,7 @@
 				<th scope="col">PDF результат</th>
 				<th scope="col">Кодовое слово</th>
 				<th scope="col">Итоговоая сумма</th>
+				<th scope="col">Изменения</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -25,7 +26,8 @@
 					<td><?php echo $patients['data']; ?></td>
 					<td><?php echo $patients['result']; ?></td>
 					<td><?php echo $patients['md5']; ?></td>
-					<td><?php echo $patients['sum']; ?> сом</td>
+					<td ><?php echo $patients['sum']; ?> сом</td>
+					<td><a onclick="id_pat(<?php echo $patients['id']; ?>)"  href="" data-toggle="modal" data-target="#inputmodal" class="btn btn-sm btn-info" role="button" >Добавить</a></td>
 				</tr>
 			<?php  }?>
 
@@ -40,4 +42,5 @@
 			?>
 		</ul>
 	</div>
-	</div>
+</div>
+
