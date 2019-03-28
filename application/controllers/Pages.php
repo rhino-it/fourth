@@ -1,13 +1,12 @@
 <?php
 session_start();
 if (isset($_SESSION['language'])!=true) $_SESSION['language'] = 'russian';
+if (isset($_SESSION['user_login_check'])!=true) $_SESSION['user_login_check'] = 0;
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pages extends CI_Controller {
-
-	public function index($id=0)
-	{
+	public function index($id=0)	{
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
@@ -19,32 +18,50 @@ class Pages extends CI_Controller {
 		$this->load->view('news_view');
 		$this->load->view('middle_view',$data);
 		$this->load->view('footer_view');
-	}
-
-	public function results($id=0)
-	{
+	}	
+	public function user_come_in()	{
+		$this->load->model('Get_model');
+		$user_login=$this->input->post('login');
+		$user_password=$this->input->post('password');
+		$user_password=md5($user_password);
+		if (isset($user_login) && isset($user_password)) {
+			$data['user_login_check'] = $this->Get_model->user_login_check($user_login,$user_password);
+			if ($data['user_login_check']==1) {
+				$_SESSION['user_login_check']=1;			
+			}
+			redirect(base_url('index.php/Pages/index'),'refresh');
+		}
+		else{
+			redirect(base_url('index.php/Pages/index'),'refresh');	
+		}
+	}	
+	public function user_go_out()	{
+		$_SESSION['user_login_check']=0;			
+		redirect(base_url('index.php/Pages/index'),'refresh');
+	}	
+	public function results($id=0)	{
 		// CAPTCHA start
 		$this->load->helper('captcha');
 		$vals = array(
-        'img_path'      => './assets/images/captcha/',
-        'img_url'       => base_url().'assets/images/captcha/',
-        'font_path'     => './path/to/fonts/texb.ttf',
-        'img_width'     => '130',
-        'img_height'    => 50,
-        'expiration'    => 300,
-        'word_length'   => 8,
-        'font_size'     => 100,
-        'img_id'        => 'Imageid',
-        'pool'          => '0123456789abcdefghijklmnopqrstuvwxyz',
-        'colors'        => array(
-                'background' => array(255, 255, 255),
-                'border' => array(0,207,239),
-                'text' => array(0, 0, 0),
-                'grid' => array(255, 40, 40)
-        )
-			);
-			$data = create_captcha($vals);
-			$_SESSION['captcha_key']=$data['word'];
+			'img_path'      => './assets/images/captcha/',
+			'img_url'       => base_url().'assets/images/captcha/',
+			'font_path'     => 'system/fonts/Roboto-Black.ttf',
+			'img_width'     => '130',
+			'img_height'    => 50,
+			'expiration'    => 300,
+			'word_length'   => 8,
+			'font_size'     => 12,
+			'img_id'        => 'Imageid',
+			'pool'          => '0123456789abcdefghijklmnopqrstuvwxyz',
+			'colors'        => array(
+				'background' => array(255, 255, 255),
+				'border' => array(0,207,239),
+				'text' => array(0, 0, 0),
+				'grid' => array(255, 40, 40)
+			)
+		);
+		$data = create_captcha($vals);
+		$_SESSION['captcha_key']=$data['word'];
 		// CAPTCHA start
 
 		$this->load->model('Get_model');
@@ -52,11 +69,10 @@ class Pages extends CI_Controller {
 
 		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
-		 $this->load->view('results_view',$data);
+		$this->load->view('results_view',$data);
 		$this->load->view('footer_view');
 	}
-	public function uzi($id=0)
-	{
+	public function uzi($id=0)	{
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
@@ -64,8 +80,7 @@ class Pages extends CI_Controller {
 		$this->load->view('uzi_view',$data);
 		$this->load->view('footer_view');
 	}
-	public function phizio($id=0)
-	{
+	public function phizio($id=0)	{
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
@@ -73,8 +88,7 @@ class Pages extends CI_Controller {
 		$this->load->view('phizio_view',$data);
 		$this->load->view('footer_view');
 	}
-	public function schedule($id=16)
-	{
+	public function schedule($id=16)	{
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
@@ -83,8 +97,7 @@ class Pages extends CI_Controller {
 		$this->load->view('schedule_view',$data);
 		$this->load->view('footer_view');
 	}
-	public function recipes($id=0)
-	{
+	public function recipes($id=0)	{
 		$_SESSION['counter_medic']=0;
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
@@ -95,8 +108,7 @@ class Pages extends CI_Controller {
 		$this->load->view('recipes_view',$data);
 		$this->load->view('footer_view');
 	}
-	public function staff($id=0)
-	{
+	public function staff($id=0)	{
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
@@ -105,8 +117,7 @@ class Pages extends CI_Controller {
 		$this->load->view('staff_view');
 		$this->load->view('footer_view');
 	}
-	public function doctor($id=0)
-	{
+	public function doctor($id=0)	{
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
@@ -115,8 +126,7 @@ class Pages extends CI_Controller {
 		$this->load->view('doctor_view',$data);
 		$this->load->view('footer_view');
 	}
-	public function page($id=0)
-	{
+	public function page($id=0)	{
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
@@ -126,54 +136,52 @@ class Pages extends CI_Controller {
 		$this->load->view('content_view',$data);
 		$this->load->view('footer_view');
 	}
-	public function arhiv($id=0)
-	{
+	public function arhiv($id=0)	{
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 
 		$config['base_url'] = base_url() . 'pages/arhiv/';
 
-	
+
 		$query =$this->db->query('SELECT * FROM ex_page WHERE id_type_page=1');
 
-        $config['total_rows'] = $query->num_rows(); 
-         $config['url_segment'] = 3;
-         $config['per_page'] = 6;
-         $config['num_links'] = 3;
+		$config['total_rows'] = $query->num_rows(); 
+		$config['url_segment'] = 3;
+		$config['per_page'] = 6;
+		$config['num_links'] = 3;
 
-         $config['first_tag_open'] = '<li>';
-         $config['first_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
 
-         $config['last_tag_open'] = '<li>';
-         $config['last_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
 
-         $config['prev_tag_open'] = '<li>';
-         $config['prev_tag_close'] = '</li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
 
-         $config['next_tag_open'] = '<li>';
-         $config['next_tag_close'] = '</li>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
 
-         $config['num_tag_open'] = '<li>';
-         $config['num_tag_close'] = '</li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
 
-         $config['cur_tag_open'] = '<li class="active"><a href="#">';
-         $config['cur_tag_close'] = '</a></li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
 
-         $config['first_link'] = 'First';
-         $config['last_link'] = 'Last';
+		$config['first_link'] = 'First';
+		$config['last_link'] = 'Last';
 
-         $this->pagination->initialize($config);
-         
-         $data['arhiv'] = $this ->Get_model->arhiv($config['per_page'], $this->uri->segment(3));
+		$this->pagination->initialize($config);
 
-	
+		$data['arhiv'] = $this ->Get_model->arhiv($config['per_page'], $this->uri->segment(3));
+
+
 		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
 		$this->load->view('arhiv_view',$data);
 		$this->load->view('footer_view');
 	}
-	public function uslugi_detail($id=0)
-	{
+	public function uslugi_detail($id=0)	{
 		$this->load->model('Get_model');
 		$data['uslugi_detail'] = $this->Get_model->uslugi_detail($id);
 		$data['main_menu'] = $this->Get_model->md_menu(1);
@@ -184,20 +192,22 @@ class Pages extends CI_Controller {
 		$this->load->view('uzi_view',$data);
 		$this->load->view('footer_view');
 	}
-	public function about($id=0)
-	{
+	public function about($id=0)	{
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
+		$data['about'] = $this->Get_model->about();
 
 		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
 		$this->load->view('about_view',$data);
 		$this->load->view('footer_view');
 	}
-
-	public function check_captcha()	{	
+	public function check_captcha($random_code=0)	{	
+		$random_code=$this->input->post('Codeword');
+		$this->load->model('Get_model');	
+		$data['code_check'] = $this->Get_model->code_md5_check($random_code);
 		$a=$this->input->post('text_captcha');
-		if ($a==$_SESSION['captcha_key']) {
+		if ($a==$_SESSION['captcha_key'] && $data['code_check']==1) {
 			echo '1';
 		}
 		else{
@@ -237,35 +247,35 @@ class Pages extends CI_Controller {
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$config['base_url'] = base_url() . 'pages/patients/';
-         $config['total_rows'] = $this->db->count_all('ex_medic_patient_data');
-         $config['url_segment'] = 3;
-         $config['per_page'] = 6;
-         $config['num_links'] = 3;
+		$config['total_rows'] = $this->db->count_all('ex_medic_patient_data');
+		$config['url_segment'] = 3;
+		$config['per_page'] = 6;
+		$config['num_links'] = 3;
 
-         $config['first_tag_open'] = '<li>';
-         $config['first_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
 
-         $config['last_tag_open'] = '<li>';
-         $config['last_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
 
-         $config['prev_tag_open'] = '<li>';
-         $config['prev_tag_close'] = '</li>';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
 
-         $config['next_tag_open'] = '<li>';
-         $config['next_tag_close'] = '</li>';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
 
-         $config['num_tag_open'] = '<li>';
-         $config['num_tag_close'] = '</li>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
 
-         $config['cur_tag_open'] = '<li class="active"><a href="#">';
-         $config['cur_tag_close'] = '</a></li>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
 
-         $config['first_link'] = 'First';
-         $config['last_link'] = 'Last';
+		$config['first_link'] = 'First';
+		$config['last_link'] = 'Last';
 
-         $this->pagination->initialize($config);
-         
-         $data['ex_medic_patient_data'] = $this ->Get_model->pagination_services($config['per_page'], $this->uri->segment(3));
+		$this->pagination->initialize($config);
+
+		$data['ex_medic_patient_data'] = $this ->Get_model->pagination_services($config['per_page'], $this->uri->segment(3));
 
 
 		$this->load->view('head_view');
@@ -287,70 +297,66 @@ class Pages extends CI_Controller {
 		$_SESSION['address'] = $this->input->post('address');
 
 		if (isset($_SESSION['name'])!='' && isset($_SESSION['birthday'])!='' && isset($_SESSION['phone_number'])!='' && isset($_SESSION['address'])!='' && isset($_SESSION['q0'])!='') {
-		$id_max=0;
-		$sum=0;
+			$id_max=0;
+			$sum=0;
 
 
-		$random_code=random_string('alnum',8);
-		$data['code_check'] = $this->Get_model->code_md5_check($random_code);
+			$random_code=random_string('alnum',8);
+			$data['code_check'] = $this->Get_model->code_md5_check($random_code);
 
-		if ($data['code_check']==0) {
-		$this->db->select_max('id');
-		$query = $this->db->get('ex_medic_patient');
-		foreach ($query->result_array() as $q3) {
-			$id_max=$q3['id'];
-		}
-		$id_max+=1;
+			if ($data['code_check']==0) {
+				$this->db->select_max('id');
+				$query = $this->db->get('ex_medic_patient');
+				foreach ($query->result_array() as $q3) {
+					$id_max=$q3['id'];
+				}
+				$id_max+=1;
 
-		for ($i=0; $i < $count_i; $i++) { 
-			$query = $this->db->get_where('ex_medic_list_of_analisys', array('id' => $_SESSION['q'.$i]));
-			foreach ($query->result_array() as $q1) {
+				for ($i=0; $i < $count_i; $i++) { 
+					$query = $this->db->get_where('ex_medic_list_of_analisys', array('id' => $_SESSION['q'.$i]));
+					foreach ($query->result_array() as $q1) {
+						$data=array(
+							'id_data' => $id_max,
+							'id_analysys' => $q1['id'],
+							'price' => $q1['price'],
+						);
+						$this->db->insert('ex_medic_patient_analysys', $data);
+						$sum+=$q1['price'];
+					}
+				}
+
 				$data=array(
-					'id_data' => $id_max,
-					'id_analysys' => $q1['id'],
-					'price' => $q1['price'],
+					'name' => $_SESSION['name'],
+					'birthday' => $_SESSION['birthday'],
+					'phone_number' => $_SESSION['phone_number'],
+					'address' => $_SESSION['address'],
 				);
-				$this->db->insert('ex_medic_patient_analysys', $data);
-				$sum+=$q1['price'];
+				$this->db->insert('ex_medic_patient', $data); 	
+
+				$data=array(
+					'id_patient' => $id_max,
+					'data' => date("Y-m-d"),
+					'md5' => $random_code,
+					'sum' => $sum,
+				);
+				$this->db->insert('ex_medic_patient_data', $data);
+				redirect(base_url('index.php/Pages/patients'),'refresh');
+
+				$data=array(
+					'id_patient' => $id_max,
+					'data' => date("Y-m-d"),
+					'md5' => $random_code,
+					'sum' => $sum,
+				);
+				$this->db->insert('ex_medic_patient_data', $data);
+				redirect(base_url('index.php/Pages/recipes'),'refresh');					
+			}				
+			else{
+				redirect(base_url('index.php/Pages/medicoment_insert'),'refresh');
 			}
 		}
-
-		$data=array(
-			'name' => $_SESSION['name'],
-			'birthday' => $_SESSION['birthday'],
-			'phone_number' => $_SESSION['phone_number'],
-			'address' => $_SESSION['address'],
-		);
-		$this->db->insert('ex_medic_patient', $data);
-		// $insert=$this->Get_model->insert($data);
-		// echo $this->Get_model->get_last_id();
- 	
-		
-		$data=array(
-			'id_patient' => $id_max,
-			'data' => date("Y-m-d"),
-			'md5' => md5(random_string('alnum',8)),
-			'sum' => $sum,
-		);
-		$this->db->insert('ex_medic_patient_data', $data);
-		redirect(base_url('index.php/Pages/patients'),'refresh');
-
-			$data=array(
-				'id_patient' => $id_max,
-				'data' => date("Y-m-d"),
-				'md5' => $random_code,
-				'sum' => $sum,
-			);
-			$this->db->insert('ex_medic_patient_data', $data);
-			redirect(base_url('index.php/Pages/recipes'),'refresh');					
-			}				
 		else{
-			redirect(base_url('index.php/Pages/medicoment_insert'),'refresh');
+			redirect(base_url('index.php/Pages/recipes'),'refresh');
 		}
 	}
-
-	else{
-		redirect(base_url('index.php/Pages/recipes'),'refresh');
-	}
-}
 }	

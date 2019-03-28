@@ -7,23 +7,30 @@
 						<div class="leftline">
 							<a href="" data-toggle="modal" data-target="#mapmodal"><i class="fa fa-map-marker" aria-hidden="true"></i> Мы на карте</a>
 						</div>
-
 					</div>
 					<div class="col-xs-12 col-sm-6 ">
 						<div class="rightline">
-							<a href="<?php echo base_url().'index.php/Pages/recipes'; ?>">Сдать анализ</a>
-							<a href="<?php echo base_url().'index.php/Pages/results'; ?>">Получить результат</a>
-							<a href="" data-toggle="modal" data-target="#loginmodal" class="register">вход</a>
+							<?php 
+								if ($_SESSION['user_login_check']==1) {
+									echo '<a href="'.base_url('index.php/Pages/recipes').'">Сдать анализ</a>';
+									echo '<a href="'.base_url('index.php/Pages/patients').'">Список пациентов</a>';
+								}
+							?>
+							<a href="<?php echo base_url().'index.php/Pages/results'; ?>" class="red">Получить результат</a>
+							<?php 
+								if ($_SESSION['user_login_check']==1) {
+									echo '<a href="'.base_url('index.php/Pages/user_go_out').'" class="register">Выход</a>';
+								}
+								else{
+									echo '<a href="" data-toggle="modal" data-target="#loginmodal" class="register">Вход</a>';
+								}
+							?>
 						</div>
 					</div>
 				</div>
-
 			</div>
-
 		</div>
-
 	</div>
-
 	<div class="menu fixed-box">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-div">
 			<div class="container">						
@@ -53,8 +60,8 @@
 									<?php  foreach ($under_menu as $u_menu){ ?>
 										<li><?php
 										echo '<a href="';
-										if($u_menu['url']=='') {echo base_url('index.php/Pages/page/').$u_menu['id'];} 
-										else {echo $u_menu['url'];}
+										if($u_menu['url']=='') {echo base_url();} 
+										else {echo $u_menu['url'].'/'.$u_menu['id_page'];}
 										echo '">'.$u_menu['name_ru'].'</a>'; ?>
 									</li>
 								<?php } ?>
@@ -65,7 +72,6 @@
 						$i=true;
 					} ?>
 				</ul>
-
 			</div>
 		</div>
 	</nav>
