@@ -13,6 +13,7 @@
 							<?php 
 								if ($_SESSION['user_login_check']==1) {
 									echo '<a href="'.base_url('index.php/Pages/recipes').'">Сдать анализ</a>';
+									echo '<a href="'.base_url('index.php/Pages/patients').'">Список пациентов</a>';
 								}
 							?>
 							<a href="<?php echo base_url().'index.php/Pages/results'; ?>" class="red">Получить результат</a>
@@ -59,8 +60,8 @@
 									<?php  foreach ($under_menu as $u_menu){ ?>
 										<li><?php
 										echo '<a href="';
-										if($u_menu['url']=='') {echo base_url('index.php/Pages/page/').$u_menu['id'];} 
-										else {echo $u_menu['url'];}
+										if($u_menu['url']=='') {echo base_url();} 
+										else {echo $u_menu['url'].'/'.$u_menu['id_page'];}
 										echo '">'.$u_menu['name_ru'].'</a>'; ?>
 									</li>
 								<?php } ?>

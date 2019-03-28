@@ -92,4 +92,9 @@ function user_login_check($user_login,$user_password) {
     $query = $this->db->get('ex_user');   
     return $query->num_rows();
 }
+function about() {
+    $query = $this->db->where('id','126');
+    $query = $this->db->get('ex_page');   
+    return $query->result_array();
+}
 } 

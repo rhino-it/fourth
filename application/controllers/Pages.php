@@ -1,12 +1,12 @@
 <?php
 session_start();
 if (isset($_SESSION['language'])!=true) $_SESSION['language'] = 'russian';
+if (isset($_SESSION['user_login_check'])!=true) $_SESSION['user_login_check'] = 0;
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pages extends CI_Controller {
 	public function index($id=0)	{
-		// $data['user_login_check']
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
@@ -21,15 +21,19 @@ class Pages extends CI_Controller {
 	}	
 	public function user_come_in()	{
 		$this->load->model('Get_model');
-
 		$user_login=$this->input->post('login');
 		$user_password=$this->input->post('password');
-
-		$data['user_login_check'] = $this->Get_model->user_login_check($user_login,$user_password);
-		if ($data['user_login_check']==1) {
-			$_SESSION['user_login_check']=1;			
+		$user_password=md5($user_password);
+		if (isset($user_login) && isset($user_password)) {
+			$data['user_login_check'] = $this->Get_model->user_login_check($user_login,$user_password);
+			if ($data['user_login_check']==1) {
+				$_SESSION['user_login_check']=1;			
+			}
+			redirect(base_url('index.php/Pages/index'),'refresh');
 		}
-		redirect(base_url('index.php/Pages/index'),'refresh');
+		else{
+			redirect(base_url('index.php/Pages/index'),'refresh');	
+		}
 	}	
 	public function user_go_out()	{
 		$_SESSION['user_login_check']=0;			
@@ -191,6 +195,7 @@ class Pages extends CI_Controller {
 	public function about($id=0)	{
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
+		$data['about'] = $this->Get_model->about();
 
 		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
