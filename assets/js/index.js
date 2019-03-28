@@ -122,3 +122,4 @@ function click_medic_end(){
  });
 })
 // results show end
+

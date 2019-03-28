@@ -204,8 +204,36 @@ class Pages extends CI_Controller {
 			redirect(base_url('index.php/Pages/results'),'refresh');
 		}
 	}
+
+
+
+
+
+	public function add_result($id=0){
+		if (isset($_POST['id_patients'])){
+
+				$config['upload_path']          = './assets/pdf/';
+                $config['allowed_types']        = 'pdf';
+                $config['max_size']             = 3024;
+                $config['encrypt_name']         = TRUE;
+                $config['remove_spaces']         = TRUE;
+
+		  $this->load->library('upload', $config);
+		  $this->upload->do_upload('pdf_file');
+
+		  $image_data=$this->upload->data();
+
+		  $add_img['result'] = $image_data['file_name'];
+		  // $add_img['vrem'] = $date['Y-m-d H:i:s'];
+		  $this->db->where('id', $_POST['id_patients']);
+		  $this->db->update('ex_medic_patient_data', $add_img);
+		  redirect(base_url('index.php/Pages/patients'),'refresh');
+
+		}
+	}
+
 	public function patients($id=0)
-	{
+	{	
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$config['base_url'] = base_url() . 'pages/patients/';
