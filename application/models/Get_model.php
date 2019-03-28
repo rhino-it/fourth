@@ -76,6 +76,19 @@ function pagination_services($num, $offset){
    $query = $this->db->get('ex_medic_patient_data', $num, $offset);
    return $query->result_array();
 }
+function pagination_filter($num, $offset,$ot,$do){   
+   $this->db->order_by('id', 'DESC');
+   $query = $this->db->get('ex_medic_patient_data', $num, $offset);
+   return $query->result_array();
+}
+function all_filter($ot,$do){   
+   $this->db->order_by('id', 'DESC');
+   $query = $this->db->get('ex_medic_patient_data');
+   return $query->result_array();
+}
+
+
+
 function code_check($num, $offset)    {   
    $this->db->order_by('id', 'DESC');
    $query = $this->db->get('ex_medic_patient_data', $num, $offset);

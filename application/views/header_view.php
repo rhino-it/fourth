@@ -52,7 +52,7 @@
 									echo base_url();
 								}
 								else{
-								  echo $u_menu['url']; 
+								  echo $u_menu['url'].'/'.$u_menu['id_page']; 
 								}
 									echo '">'.$u_menu['name_ru'].'</a>'; 
 								?>

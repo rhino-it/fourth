@@ -56,33 +56,33 @@
 						<label for="exampleDropdownFormPassword1">Пароль</label>
 						<input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="********">
 					</div>
-				<!-- <div class="form-check"> -->
+					<!-- <div class="form-check"> -->
 						<!-- <input type="checkbox" class="form-check-input" id="dropdownCheck"> -->
-							<!-- <label class="form-check-label" for="dropdownCheck"> -->
+						<!-- <label class="form-check-label" for="dropdownCheck"> -->
 							<!-- Запомнить -->
-						<!-- </label> -->
-					<!-- </div> -->
-					<button type="submit" class="btn btn-primary">Вход</button>
-				</form>
+							<!-- </label> -->
+							<!-- </div> -->
+							<button type="submit" class="btn btn-primary">Вход</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
-<!-- Логин конец -->
-<!-- карта -->
-<div class="modal fade" id="mapmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header ">
-				<h5 class="modal-title text-center 	w-100" id="exampleModalLabel">Мы на карте</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div><span class="foot_title"><i>Мы на Google карте</i></span></div>
-				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d603.1783704162322!2d72.82259524259183!3d40.50145118307597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bdae6167fc80b7%3A0x1d5e507810da974d!2z0J3QsNGA0L7QtNC90YvQuQ!5e0!3m2!1sru!2skg!4v1550403273171"  width="100%" height="400"  frameborder="0" style="border:0" allowfullscreen></iframe>
-			</div>
+		<!-- Логин конец -->
+		<!-- карта -->
+		<div class="modal fade" id="mapmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header ">
+						<h5 class="modal-title text-center 	w-100" id="exampleModalLabel">Мы на карте</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div><span class="foot_title"><i>Мы на Google карте</i></span></div>
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d603.1783704162322!2d72.82259524259183!3d40.50145118307597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bdae6167fc80b7%3A0x1d5e507810da974d!2z0J3QsNGA0L7QtNC90YvQuQ!5e0!3m2!1sru!2skg!4v1550403273171"  width="100%" height="400"  frameborder="0" style="border:0" allowfullscreen></iframe>
+					</div>
 								<!-- <div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
 									<button type="button" class="btn btn-primary">Вход</button>
@@ -91,7 +91,7 @@
 						</div>
 					</div>
 					<!-- карта конец -->
-
+					<!-- Добавление PDF результата -->
 					<div class="modal fade" id="inputmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="">
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
@@ -112,8 +112,7 @@
 										</div>
 										<div class="form-group">
 											<div class="col-sm-offset-2 col-sm-8">
-												<input type="submit">	
-												<!-- <button type="submit" id="submit" class="btn btn-info">Добавить</button> -->
+												<button type="submit" id="submit" class="btn btn-info">Добавить</button> 
 											</div>
 										</div>
 									</form>
@@ -125,6 +124,47 @@
 							</div>
 						</div>
 					</div>
+					<!--конец Добавления PDF результата -->
+
+					<!-- Фильтрация по дате -->
+					<div class="modal fade" id="filtermodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header ">
+									<h5 class="modal-title text-center 	w-100" id="exampleModalLabel">Фильтрация</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form class="form-horizontal" method="post" id="patients_file" enctype="multipart/form-data" action="<?php echo base_url('index.php/pages/patients'); ?>" >
+										<div class="form-group no-gutters">
+											<div class="row">
+												<div class="col">От:</div>
+												<div class="col">До:</div>
+											</div>
+											<div class="row">
+												<div class="col"><input type="date" class="form-control" id="ot" name="ot"></div>
+												<div class="col"><input type="date" class="form-control" id="ot" name="do"></div>
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<div class="col-sm-offset-2 col-sm-8">	
+												<button type="submit" id="submit" class="btn btn-info">Вывести результат</button>
+											</div>
+										</div>
+									</form>
+								</div>
+								<!-- <div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+									<button type="button" class="btn btn-primary">Вход</button>
+								</div> -->
+							</div>
+						</div>
+					</div>
+					<!-- Фильтрация по дате -->
+
 					<!-- Model end -->
 					<script src="<?php echo base_url().'assets/js/jquery-3.3.1.js'; ?>"></script>
 					<script src="<?php echo base_url().'assets/js/bootstrap.js'; ?>"></script>				
@@ -143,9 +183,9 @@
 						
 						function id_pat(id)
 						{	
-						var i_p = document.getElementById('id_patients');	
+							var i_p = document.getElementById('id_patients');	
 							i_p.value=id;
-													
+
 						}
 					</script>
 				</body>
