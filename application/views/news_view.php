@@ -13,7 +13,7 @@
 					?>
 							<div class="news-block">
 						<div class="news-img" style="">
-							<img src="<?php echo base_url().$news['foto']; ?>" alt="">
+							<img src="<?php echo base_url().'assets/images/photos/'.$news['foto']; ?>" alt="">
 						</div>
 						<div class="news-title">
 							<?php
@@ -39,7 +39,6 @@
 						</div>
 					</div>
 					</a>
-						
 				</div>
 			<?php endforeach ?>
 		</div>

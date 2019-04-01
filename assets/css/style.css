@@ -740,8 +740,9 @@ ul {
   font-weight: bold;
   color: #333;
   padding-top: 20px;
-  border-top: 7px solid #723FFE;
-  margin-top: 20px;
+  border-bottom: 7px solid #723FFE;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
 }
 .doctor .right {
   flex-basis: 70%;
@@ -968,4 +969,15 @@ ul {
   border: 1px solid #333333;
   border-bottom: 0;
 
+}
+.img{
+  height: 400px;
+  background-position: center;
+  background-size: cover; 
+}
+.img2{
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+  margin-right: 10px;
 }

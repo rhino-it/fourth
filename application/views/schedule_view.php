@@ -1,3 +1,4 @@
+<div class="container">
 Главная / 
 <?
 		foreach ($ul_menu as $row) {
@@ -5,7 +6,7 @@
 		}
 
 ?>
-<div class="container">
+
 	<?php
 		 $schedule_model = $this->Get_model->ul_schedule_model($row['id_page']);
 

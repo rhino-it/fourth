@@ -20,6 +20,7 @@ function news($id) {
 }
 function main_page_news() {
     $query = $this->db->limit(3);
+    $query = $this->db->order_by('id', 'DESC');
     $query = $this->db->where('id_type_page', 1);
     $query = $this->db->get('ex_page');
     return $query->result_array();
