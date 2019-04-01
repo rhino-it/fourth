@@ -2,7 +2,7 @@
 Главная / 
 <?
 		foreach ($ul_menu as $row) {
-			echo $row['name_ru'];
+			echo '<h2 class="service">'.$row['name_ru'].'</h2>';
 		}
 
 ?>
