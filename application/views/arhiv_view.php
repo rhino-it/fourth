@@ -12,7 +12,7 @@
 						else {echo $ar['url'];} echo '">'?>
 							<div class="news-block">
 						<div class="news-img" style="">
-							<img src="<?php echo base_url().$ar['foto']; ?>" alt="">
+							<img src="<?php echo base_url().'assets/images/photos/'.$ar['foto']; ?>" alt="">
 						</div>
 						<div class="news-title"><?php echo $ar['tema_ru']; ?></div>
 						<div class="news-text">

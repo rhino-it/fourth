@@ -13,15 +13,14 @@
 					?>
 							<div class="news-block">
 						<div class="news-img" style="">
-							<img src="<?php echo base_url().$news['foto']; ?>" alt="">
+							<img src="<?php echo base_url().'assets/images/photos/'.$news['foto']; ?>" alt="">
 						</div>
 						<div class="news-title"><?php echo $news['tema_ru']; ?></div>
 						<div class="news-text">
 							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque laudantium aperiam veritatis distinctio odio, esse perspiciatis ducimus dicta tempora!
 						</div>
 					</div>
-					</a>
-				
+					</a>				
 				</div>
 			<?php endforeach ?>
 		</div>

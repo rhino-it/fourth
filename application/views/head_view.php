@@ -6,6 +6,8 @@
 	<title>Medical Clinic</title>
 	<link rel="stylesheet" href="<?php echo base_url().'assets/css/bootstrap.css';?>">
 	<link rel="stylesheet" href="<?php echo base_url().'assets/css/font-awesome.css'; ?>">
+	<link rel="stylesheet" href="<?php echo base_url().'assets/css/slick.css'; ?>">
+	<link rel="stylesheet" href="<?php echo base_url().'assets/css/slick-theme.css'; ?>">
 	<link rel="stylesheet" href="<?php echo base_url().'assets/css/animate.css'; ?>">
 	<link rel="stylesheet" href="<?php echo base_url().'assets/css/style.css'; ?>">
 	<script src="<?php echo base_url().'assets/js/wow.min.js'; ?>"></script>
