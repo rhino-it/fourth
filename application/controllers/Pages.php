@@ -88,6 +88,19 @@ class Pages extends CI_Controller {
 		$this->load->view('phizio_view',$data);
 		$this->load->view('footer_view');
 	}
+
+//begin Ular
+	public function ulpage($id=0)	{
+		$this->load->model('Get_model');
+		$this->load->view('head_view');
+		$data['main_menu'] = $this->Get_model->md_menu(1);
+		$data['ul_menu'] = $this->Get_model->ul_menu($id);
+		$this->load->view('header_view',$data);
+		$this->load->view('schedule_view',$data);
+		$this->load->view('footer_view');
+	}
+//end Ular
+
 	public function schedule($id=16)	{
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
@@ -208,18 +221,25 @@ class Pages extends CI_Controller {
 		$data['code_check'] = $this->Get_model->code_md5_check($random_code);
 		$a=$this->input->post('text_captcha');
 		if ($a==$_SESSION['captcha_key'] && $data['code_check']==1) {
-			echo '1';
+			$query = $this->db->get_where('ex_medic_patient_data', array('md5' => $random_code));
+					foreach ($query->result_array() as $pdf) {
+				redirect(base_url('assets/pdf/'.$pdf['result']),'refresh');
+					}
+			
 		}
 		else{
 			redirect(base_url('index.php/Pages/results'),'refresh');
 		}
+
 	}
 
 
 
 
-
+// загрузка файла 
 	public function add_result($id=0){
+
+
 		if (isset($_POST['id_patients'])){
 
 				$config['upload_path']          = './assets/pdf/';
@@ -241,13 +261,20 @@ class Pages extends CI_Controller {
 
 		}
 	}
-
+// загрузка файла конец
 	public function patients($id=0)
-	{	
+	{
+		$this->load->view('head_view');	
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$config['base_url'] = base_url() . 'pages/patients/';
-		$config['total_rows'] = $this->db->count_all('ex_medic_patient_data');
+		if (isset($_POST['ot']) AND isset($_POST['do'])) {
+			$config['total_rows'] = $this->Get_model->all_filter($_POST['ot'],$_POST['do']);
+
+		}
+			else{
+				$config['total_rows'] = $this->db->count_all('ex_medic_patient_data');
+			}
 		$config['url_segment'] = 3;
 		$config['per_page'] = 6;
 		$config['num_links'] = 3;
@@ -275,14 +302,20 @@ class Pages extends CI_Controller {
 
 		$this->pagination->initialize($config);
 
+
+		if (isset($_POST['ot']) AND isset($_POST['do'])) {
+		$data['ex_medic_patient_data'] = $this ->Get_model->pagination_filter($config['per_page'], $this->uri->segment(3),$_POST['ot'],$_POST['do']);
+		}
+		else{
 		$data['ex_medic_patient_data'] = $this ->Get_model->pagination_services($config['per_page'], $this->uri->segment(3));
+		}
 
 
-		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
 		$this->load->view('all_view',$data);
 		$this->load->view('footer_view');
 	}
+
 	public function medicoment_insert(){
 		$this->load->model('Get_model');		
 		$this->load->helper('string');

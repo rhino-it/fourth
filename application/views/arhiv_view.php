@@ -14,9 +14,26 @@
 						<div class="news-img" style="">
 							<img src="<?php echo base_url().'assets/images/photos/'.$ar['foto']; ?>" alt="">
 						</div>
-						<div class="news-title"><?php echo $ar['tema_ru']; ?></div>
+						<div class="news-title">
+							<?php
+                                                        if (strlen($ar['tema_ru']) < 50) {
+                                                            echo $ar['tema_ru'] . '<br>';
+                                                        } else {
+                                                            $text6 = substr($ar['tema_ru'], 0, strpos($ar['tema_ru'], ' ', strlen(substr($ar['tema_ru'], 0, 50))));
+                                                            echo $text6 . '...';
+                                                        }
+                             ?>
+						</div>
 						<div class="news-text">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque laudantium aperiam veritatis distinctio odio, esse perspiciatis ducimus dicta tempora!
+							 <?php
+                                                        if (strlen($ar['page_text_ru']) < 120) {
+                                                            echo $ar['page_text_ru'] . '<br><br>';
+                                                        } 
+                                                        else {
+                                                            $text5 = substr($ar['page_text_ru'], 0, strpos($ar['page_text_ru'], ' ', strlen(substr($ar['page_text_ru'], 0, 120))));
+                                                            echo $text5 . '...';
+                                                        }
+                             ?>	
 						</div>
 					</div>
 					</a>

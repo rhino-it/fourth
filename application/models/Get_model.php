@@ -36,6 +36,20 @@ function  schedule_model($id){
    $query = $this->db->get('ex_page');
    return $query->result_array();     
 }
+//begin Ular
+function ul_menu($id) {
+      $query = $this->db->where('id',$id);
+      $query = $this->db->get('ex_menu');
+      return $query->result_array();
+}
+
+function  ul_schedule_model($id){
+   $query = $this->db->where('id_type_page', 2);
+   $query = $this->db->where('id', $id);
+   $query = $this->db->get('ex_page');
+   return $query->result_array();     
+}
+//end Ular
 function  doctor_collective(){
    $this->db->order_by('foto_thumb', 'ASC');
    $query = $this->db->where('id_type_page', 15);
@@ -77,6 +91,26 @@ function pagination_services($num, $offset){
    $query = $this->db->get('ex_medic_patient_data', $num, $offset);
    return $query->result_array();
 }
+// список на странице
+function pagination_filter($num=0, $offset=0,$ot,$do){   
+  if ($offset=="")$offset=0;
+    $query = $this->db->query("SELECT * FROM `ex_medic_patient_data` WHERE DATE(data) >='".$ot."' AND DATE(data) <='".$do."' ORDER BY id LIMIT ".$offset.",".$num);
+   return $query->result_array();
+}
+// список на странице конец
+// номер страницы пагинации
+function all_filter($ot,$do){   
+    $query = $this->db->query("SELECT * FROM `ex_medic_patient_data` WHERE DATE(data) >='".$ot."' AND DATE(data) <='".$do."' ORDER BY id");
+
+// foreach ($query->result() as $row)
+// {
+//         echo $row->id_patient.'<br>';
+//         echo $row->data.'<br>';
+//         echo $row->sum.'<br>';
+// }
+   return $query->num_rows();
+}
+// номер страницы пагинации конец
 function code_check($num, $offset)    {   
    $this->db->order_by('id', 'DESC');
    $query = $this->db->get('ex_medic_patient_data', $num, $offset);
