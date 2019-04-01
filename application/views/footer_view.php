@@ -145,7 +145,7 @@
 											</div>
 											<div class="row">
 												<div class="col"><input type="date" class="form-control" id="ot" name="ot"></div>
-												<div class="col"><input type="date" class="form-control" id="ot" name="do"></div>
+												<div class="col"><input type="date" class="form-control" id="do" name="do"></div>
 											</div>
 										</div>
 										

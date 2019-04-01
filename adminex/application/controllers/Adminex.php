@@ -365,6 +365,8 @@ class Adminex extends CI_Controller {
     }
 
     public function files_copy() {
+
+
         if (isset($_SESSION['ex_id_user']) == false || $_SESSION['ex_id_user'] == 0)
             header('Location: ' . base_url('adminex'));
 
@@ -374,6 +376,7 @@ class Adminex extends CI_Controller {
         $this->load->model('Select_model');
 
         if (isset($_POST['download'])) {
+
             $log = FALSE;
             $f = substr(strrchr($_FILES["userfile"]["name"], '.'), 1);
             if ($f == 'doc' || $f == 'docx' || $f == 'pdf' || $f == 'ppt' || $f == 'pptx' || $f == 'xls' || $f == 'xlsx')
@@ -386,11 +389,12 @@ class Adminex extends CI_Controller {
             $config['max_size'] = 3024;
             $config['encrypt_name'] = TRUE;
             $config['remove_spaces'] = TRUE;
-
+    
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('userfile')) {
 
                 $data_select['ex_inf'] = $this->upload->display_errors('<p style="color:red">', '</p>');
+
             } else {
                 $data_select['ex_inf'] = "Файл успешно загружен.";
 

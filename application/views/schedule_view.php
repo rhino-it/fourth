@@ -1,34 +1,16 @@
-<!-- <div class="center-recipes">Расписание</div>	
-<hr style="background-color: #009AB2;height: 2px;">
-<div class="center-recipes">Узи</div>	
-<div class="container">
-	<table class="schedule">
-		<tr>
-			<th>ФИО</th>
-			<th>ПОН</th>
-			<th>ВТ</th>
-			<th>СР</th>
-			<th>ЧЕТ</th>
-			<th>ПЯТ</th>
-			<th>СУБ</th>
-			<th>ВС</th>
-		</tr>
-		<tr>
-			<td>Паланчаев Паланча</td>
-			<td>8:00 - 5:00</td>
-			<td>8:00 - 5:00</td>
-			<td>8:00 - 5:00</td>
-			<td>8:00 - 5:00</td>
-			<td>8:00 - 5:00</td>
-			<td>8:00 - 5:00</td>
-			<td>8:00 - 5:00</td>
-		</tr>
-	</table>	
-</div> -->
-<div class="container">
-	<?php 
-		foreach ($schedule_model as $s_l) {
-			echo $s_l['page_text_ru'];
+Главная / 
+<?
+		foreach ($ul_menu as $row) {
+			echo $row['name_ru'];
 		}
+
+?>
+<div class="container">
+	<?php
+		 $schedule_model = $this->Get_model->ul_schedule_model($row['id_page']);
+
+		 foreach ($schedule_model as $s_l) {
+		 	echo $s_l['page_text_ru'];
+		 }
 	?>
 </div>

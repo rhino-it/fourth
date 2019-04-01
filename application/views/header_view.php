@@ -49,7 +49,7 @@
 							<li <?php if  ($i==false) echo 'class="active"' ?> >
 								<?php echo '<a href="';
 								if($u_menu['url']=='') {
-									echo base_url();
+									echo base_url().'index.php/pages/ulpage/'.$u_menu['id'];
 								}
 								else{
 								  echo $u_menu['url'].'/'.$u_menu['id_page']; 
@@ -60,7 +60,7 @@
 									<?php  foreach ($under_menu as $u_menu){ ?>
 										<li><?php
 										echo '<a href="';
-										if($u_menu['url']=='') {echo base_url();} 
+										if($u_menu['url']=='') {echo base_url().'index.php/pages/ulpage/'.$u_menu['id'];;} 
 										else {echo $u_menu['url'].'/'.$u_menu['id_page'];}
 										echo '">'.$u_menu['name_ru'].'</a>'; ?>
 									</li>

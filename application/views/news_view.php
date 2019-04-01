@@ -15,9 +15,27 @@
 						<div class="news-img" style="">
 							<img src="<?php echo base_url().$news['foto']; ?>" alt="">
 						</div>
-						<div class="news-title"><?php echo $news['tema_ru']; ?></div>
+						<div class="news-title">
+							<?php
+                                                        if (strlen($news['tema_ru']) < 50) {
+                                                            echo $news['tema_ru'] . '<br>';
+                                                        } else {
+                                                            $text6 = substr($news['tema_ru'], 0, strpos($news['tema_ru'], ' ', strlen(substr($news['tema_ru'], 0, 50))));
+                                                            echo $text6 . '...';
+                                                        }
+                             ?>
+	
+						</div>
 						<div class="news-text">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque laudantium aperiam veritatis distinctio odio, esse perspiciatis ducimus dicta tempora!
+							 <?php
+                                                        if (strlen($news['page_text_ru']) < 120) {
+                                                            echo $news['page_text_ru'] . '<br><br>';
+                                                        } 
+                                                        else {
+                                                            $text5 = substr($news['page_text_ru'], 0, strpos($news['page_text_ru'], ' ', strlen(substr($news['page_text_ru'], 0, 120))));
+                                                            echo $text5 . '...';
+                                                        }
+                             ?>	
 						</div>
 					</div>
 					</a>
