@@ -1,5 +1,10 @@
 <div class="content">
 	<div class="container">
+		<ol class="breadcrumb">
+			<li><a href="#"> главная <span style="padding-right: 5px;">/</span></a></li>
+			<li><a href="#"> Архив<span style="padding-right: 5px;">/</span></a></li>
+		
+		</ol>
 		<h2 class="service">Архив</h2>
 		<div class="row news">
 			<?php 

@@ -1,3 +1,13 @@
+<div class="container">
+		<ol class="breadcrumb">
+			<?php
+				echo '<li><a href="'.base_url().'">Главная <span style="padding-right: 5px;">/</span></a></li>';
+				foreach ($main_menu as $row) {
+					echo  '<li><a href="#" class="active">'.$row['name_ru'].'</a></li>';
+				}
+			?>
+		</ol>
+	</div>
 	<div class="container">
 		<div class="doctor">
 			<?php 
