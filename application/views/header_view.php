@@ -45,14 +45,13 @@
 						foreach ($main_menu as $u_menu){
 							$under_menu = $this->Get_model->md_menu($u_menu['id']);
 							?>
-
 							<li <?php if  ($i==false) echo 'class="active"' ?> >
 								<?php echo '<a href="';
 								if($u_menu['url']=='') {
 									echo base_url().'index.php/pages/ulpage/'.$u_menu['id'];
 								}
 								else{
-								  echo $u_menu['url'].'/'.$u_menu['id_page']; 
+								  echo $u_menu['url']; 
 								}
 									echo '">'.$u_menu['name_ru'].'</a>'; 
 								?>
@@ -67,7 +66,6 @@
 								<?php } ?>
 							</ul>
 						</li>
-
 						<?php
 						$i=true;
 					} ?>

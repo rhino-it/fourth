@@ -95,6 +95,7 @@ class Pages extends CI_Controller {
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['ul_menu'] = $this->Get_model->ul_menu($id);
+
 		$this->load->view('header_view',$data);
 		$this->load->view('schedule_view',$data);
 		$this->load->view('footer_view');
@@ -152,6 +153,7 @@ class Pages extends CI_Controller {
 	public function arhiv($id=0)	{
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
+		$data['ul_menu'] = $this->Get_model->ul_menu($id);
 
 		$config['base_url'] = base_url() . 'pages/arhiv/';
 
@@ -339,34 +341,12 @@ class Pages extends CI_Controller {
 		$_SESSION['address'] = $this->input->post('address');
 
 		if (isset($_SESSION['name'])!='' && isset($_SESSION['birthday'])!='' && isset($_SESSION['phone_number'])!='' && isset($_SESSION['address'])!='' && isset($_SESSION['q0'])!='') {
-			$id_max=0;
 			$sum=0;
-
 
 			$random_code=random_string('alnum',8);
 			$data['code_check'] = $this->Get_model->code_md5_check($random_code);
 
 			if ($data['code_check']==0) {
-				$this->db->select_max('id');
-				$query = $this->db->get('ex_medic_patient');
-				foreach ($query->result_array() as $q3) {
-					$id_max=$q3['id'];
-				}
-				$id_max+=1;
-
-				for ($i=0; $i < $count_i; $i++) { 
-					$query = $this->db->get_where('ex_medic_list_of_analisys', array('id' => $_SESSION['q'.$i]));
-					foreach ($query->result_array() as $q1) {
-						$data=array(
-							'id_data' => $id_max,
-							'id_analysys' => $q1['id'],
-							'price' => $q1['price'],
-						);
-						$this->db->insert('ex_medic_patient_analysys', $data);
-						$sum+=$q1['price'];
-					}
-				}
-
 				$data=array(
 					'name' => $_SESSION['name'],
 					'birthday' => $_SESSION['birthday'],
@@ -374,24 +354,36 @@ class Pages extends CI_Controller {
 					'address' => $_SESSION['address'],
 				);
 				$this->db->insert('ex_medic_patient', $data); 	
+				$basket=$this->db->insert_id();
+
+				for ($i=0; $i < $count_i; $i++) { 
+					$query = $this->db->get_where('ex_medic_list_of_analisys', array('id' => $_SESSION['q'.$i]));
+					foreach ($query->result_array() as $q1) {
+						$sum+=$q1['price'];
+					}
+				}
 
 				$data=array(
-					'id_patient' => $id_max,
+					'id_patient' => $basket,
 					'data' => date("Y-m-d"),
 					'md5' => $random_code,
 					'sum' => $sum,
 				);
 				$this->db->insert('ex_medic_patient_data', $data);
-				redirect(base_url('index.php/Pages/patients'),'refresh');
+				$basket=$this->db->insert_id();
 
-				$data=array(
-					'id_patient' => $id_max,
-					'data' => date("Y-m-d"),
-					'md5' => $random_code,
-					'sum' => $sum,
-				);
-				$this->db->insert('ex_medic_patient_data', $data);
-				redirect(base_url('index.php/Pages/recipes'),'refresh');					
+				for ($i=0; $i < $count_i; $i++) { 
+					$query = $this->db->get_where('ex_medic_list_of_analisys', array('id' => $_SESSION['q'.$i]));
+					foreach ($query->result_array() as $q1) {
+						$data=array(
+							'id_data' => $basket,
+							'id_analysys' => $q1['id'],
+							'price' => $q1['price'],
+						);
+						$this->db->insert('ex_medic_patient_analysys', $data);
+					}
+				}
+				redirect(base_url('index.php/Pages/patients'),'refresh');				
 			}				
 			else{
 				redirect(base_url('index.php/Pages/medicoment_insert'),'refresh');
