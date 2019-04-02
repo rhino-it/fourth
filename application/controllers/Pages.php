@@ -269,6 +269,15 @@ class Pages extends CI_Controller {
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$config['base_url'] = base_url() . 'pages/patients/';
 		if (isset($_POST['ot']) AND isset($_POST['do'])) {
+			$_SESSION['ot']=$_POST['ot'];
+
+	  $data['sum']=$this
+	 ->db
+	 ->WHERE("data>=",$_POST['ot'])
+	 ->WHERE("data<=",$_POST['do'])
+	 ->get("ex_medic_patient_data")
+	 ->result_array();
+
 			$config['total_rows'] = $this->Get_model->all_filter($_POST['ot'],$_POST['do']);
 
 		}

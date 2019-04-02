@@ -1,8 +1,8 @@
 <div class="container">
-Главная / 
+Главная /
 <?
 		foreach ($ul_menu as $row) {
-			echo '<h2 class="service">'.$row['name_ru'].'</h2>';
+			echo '<a href="'.$row['url'].'">'.$row['name_ru'].'</a>';
 		}
 
 ?>
