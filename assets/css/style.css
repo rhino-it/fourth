@@ -990,3 +990,6 @@ ul {
 .noLink {
   pointer-events: none;
 }
+.tbodyth{
+  border-top: none !important;
+}

@@ -123,3 +123,14 @@ function click_medic_end(){
 })
 // results show end
 
+ function changeClass(){
+      var change = document.getElementById("changeclass");
+ if( change.classList.contains('fa-chevron-down') ){
+  change.classList.remove('fa-chevron-down');
+   change.classList.add('fa-chevron-up');
+ }
+ else
+ { change.classList.remove('fa-chevron-up');
+   change.classList.add('fa-chevron-down');
+ }
+ }
