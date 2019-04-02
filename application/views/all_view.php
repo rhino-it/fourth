@@ -9,13 +9,15 @@
 				<th scope="col">Дата</th>
 				<th scope="col">PDF результат</th>
 				<th scope="col">Кодовое слово</th>
-				<th scope="col">Итоговоая сумма</th>
+				<th scope="col">Итоговая сумма</th>
 				<th scope="col">Изменения</th>
 			</tr>
 		</thead>
 		<tbody>
+			<?php $i=0; ?>
 			<?php foreach ($ex_medic_patient_data as $patients) {
 				$this->db->where('id', $patients['id_patient']);
+				
 				$row = $this->db->get('ex_medic_patient')->row();	   	
 				?>
 				<tr>
@@ -31,9 +33,19 @@
 		</tbody>
 
 	</table>
-		<div class="row">
+		<div class="row justify-content-between">
 			<div class="col pb-3">
 				<a href="" data-toggle="modal" data-target="#filtermodal" class="btn btn-sm btn-info" role="button" >Фильтрация по дате</a>
+			</div>
+			<div class="col-4 pb-3">
+				<p><?php if (isset($_SESSION['ot'])){
+					foreach ($sum as $sum) {
+					$i=$i+$sum['sum'];
+				} 
+				 echo 'Итоговая сумма за выбранный период: '.$i.' сом'; 
+				$_SESSION['ot']=NULL;}
+				?>
+				</p>
 			</div>
 		</div>
 	<div class="pagination_user">

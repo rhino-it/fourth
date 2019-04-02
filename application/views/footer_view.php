@@ -138,14 +138,14 @@
 								</div>
 								<div class="modal-body">
 									<form class="form-horizontal" method="post" id="patients_file" enctype="multipart/form-data" action="<?php echo base_url('index.php/pages/patients'); ?>" >
-										<div class="form-group no-gutters">
-											<div class="row">
-												<div class="col">От:</div>
-												<div class="col">До:</div>
-											</div>
-											<div class="row">
-												<div class="col"><input type="date" class="form-control" id="ot" name="ot"></div>
-												<div class="col"><input type="date" class="form-control" id="do" name="do"></div>
+										<div class="form-group">
+											<div class="row no-gutters justify-content-around">
+												<div class="col-1" style="padding-top: 2%;">С</div>
+												<div class="col-5"><input type="date" class="form-control" id="ot" name="ot" value="<?php
+												$start_date = date('Y-m-d', mktime(0, 0, 0, date("m"), 1, date("Y")));
+												 echo $start_date; ?>"></div>
+												<div class="col-1" style="padding-top: 2%; padding-left: 5px;">ПО</div>
+												<div class="col-5"><input type="date" class="form-control" id="do" name="do" value="<?php echo date('Y-m-d');?>"></div>
 											</div>
 										</div>
 										
