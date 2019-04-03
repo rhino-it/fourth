@@ -1,9 +1,18 @@
 <div class="content">
 	<div class="container">
+				<?php foreach ($inf as $inf): ?>
+		<ol class="breadcrumb">
+			<?php
+					echo '
+						<li><a href="'.base_url().'">Главная <span style="padding-right: 5px;">/</span></a></li>
+						<li><a href="#">Архив <span style="padding-right: 5px;">/</span></a></li>
+						<li><a href="#"  class="active">'.$inf['tema_ru'].'</a></li>
+					';
+			?>
+		</ol>
 		<div class="row service">
 			<div class="title title_header">НОВОСТИ</div>
 			<div class="main_news">
-				<?php foreach ($inf as $inf): ?>
 					<div class="box-img" style="background-image: url('<?php echo base_url().'assets/images/photos/'.$inf['foto'];?>')">
 					</div>
 					<div class="title">

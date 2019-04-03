@@ -1,10 +1,20 @@
 <div class="container">
 		<ol class="breadcrumb">
 			<?php
-				echo '<li><a href="'.base_url().'">Главная <span style="padding-right: 5px;">/</span></a></li>';
-				foreach ($main_menu as $row) {
-					echo  '<li><a href="#" class="active">'.$row['name_ru'].'</a></li>';
-				}
+			foreach ($ul_menu as $value) {
+				$a=$value['id_parent'];
+				$word=$value['name_ru'];
+			}
+			if ($a!=1) {
+				$test = $this->Get_model->ul_menu($a);
+			}
+					echo '<li><a href="'.base_url().'">Главная <span style="padding-right: 5px;">/</span></a></li>';
+					if (isset($test)) {
+						foreach ($test as $row) {
+							echo  '<li><a href="#">'.$row['name_ru'].' <span style="padding-right: 5px;">/</span></a></li>';
+						}
+					}
+					echo  '<li><a href="#"  class="active">'.$word.'</a></li>';
 			?>
 		</ol>
 	</div>
