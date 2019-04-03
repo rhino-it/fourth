@@ -22,8 +22,8 @@
 				?>
 				<tr>
 					<th scope="row"><?php echo $patients['id']; ?></th>
-					<td><a onclick="changeClass()" data-toggle="collapse" href="#my<?php echo $patients['id']; ?>" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><?php echo $row->name; ?> 
-				<i class="fa fa-chevron-down" aria-hidden="true" id="changeclass"></i> 
+					<td><a onclick="changeClass(<?php echo $patients['id']; ?>)" data-toggle="collapse" href="#my<?php echo $patients['id']; ?>" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><?php echo $row->name; ?> 
+				<i class="fa fa-chevron-down" aria-hidden="true" id="changeclass<?php echo $patients['id']; ?>"></i> 
 				</a></td>
 					<td><?php echo $patients['data']; ?></td>
 					<td><a href="<?php echo base_url('assets/pdf/'.$patients['result']); ?>" style="color: blue;" target="blank"><?php echo $patients['result']; ?></a></td>
