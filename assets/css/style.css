@@ -702,7 +702,6 @@ ul {
   padding: 40px 0;
 }
 .paddding {
-  flex-basis: 33.33%;
   padding: 0 15px;
   margin-bottom: 40px;
 }
@@ -990,7 +989,7 @@ ul {
 }
 .breadcrumb .active{
   color: #428BCA;
-
+}
 .tbodyth{
   border-top: none !important;
 }
