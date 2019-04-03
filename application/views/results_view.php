@@ -36,7 +36,7 @@
 										</div>
 									</div>									
 								</div>
-								<div class="col-md-6 col-sm-12 col-xs-12">
+								<!-- <div class="col-md-6 col-sm-12 col-xs-12">
 									<div class="mb-4 col-md-12">
 										<div class="box box_1">
 											<div class="title">
@@ -50,7 +50,7 @@
 											</div>									
 										</div>
 									</div>									
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</form>

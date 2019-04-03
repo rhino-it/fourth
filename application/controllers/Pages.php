@@ -12,6 +12,8 @@ class Pages extends CI_Controller {
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['main_page_news'] = $this->Get_model->main_page_news();
 		$data['uslugi'] = $this->Get_model->uslugi();
+
+		$data['slider'] = $this->Get_model->slider(23);
 		
 		$this->load->view('header_view',$data);
 		$this->load->view('slider_view');
