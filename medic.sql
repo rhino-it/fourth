@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 01 2019 г., 16:44
+-- Время создания: Апр 02 2019 г., 17:39
 -- Версия сервера: 5.5.41-log
 -- Версия PHP: 5.3.29
 
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `ex_medic_patient` (
   `phone_number` varchar(20) NOT NULL,
   `address` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Дамп данных таблицы `ex_medic_patient`
@@ -146,7 +146,8 @@ INSERT INTO `ex_medic_patient` (`id`, `name`, `birthday`, `phone_number`, `addre
 (9, 'asdasd', '2019-03-14', 'asdasd', 'asdasd'),
 (10, 'asdasd', '2019-03-14', 'asdasd', 'asdasd'),
 (11, 'sacdf', '2019-03-16', '1', 'saas'),
-(12, 'Бекмырза Аскарбеков', '1985-01-01', '0556 8994 44', 'ул. Салиева');
+(12, 'Бекмырза Аскарбеков', '1985-01-01', '0556 8994 44', 'ул. Салиева'),
+(13, 'фвыфвы выфвыфвыф ', '2019-04-11', '34324324324', 'ыфвыф фывыф в  вфыв');
 
 -- --------------------------------------------------------
 
@@ -160,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `ex_medic_patient_analysys` (
   `id_analysys` int(20) NOT NULL,
   `price` int(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
 
 --
 -- Дамп данных таблицы `ex_medic_patient_analysys`
@@ -193,7 +194,11 @@ INSERT INTO `ex_medic_patient_analysys` (`id`, `id_data`, `id_analysys`, `price`
 (24, 10, 28, 200),
 (25, 10, 29, 500),
 (26, 11, 26, 650),
-(27, 12, 25, 400);
+(27, 12, 25, 400),
+(28, 13, 24, 300),
+(29, 13, 26, 650),
+(30, 13, 28, 200),
+(31, 13, 29, 500);
 
 -- --------------------------------------------------------
 
@@ -209,7 +214,7 @@ CREATE TABLE IF NOT EXISTS `ex_medic_patient_data` (
   `md5` varchar(100) NOT NULL,
   `sum` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Дамп данных таблицы `ex_medic_patient_data`
@@ -220,11 +225,12 @@ INSERT INTO `ex_medic_patient_data` (`id`, `id_patient`, `data`, `result`, `md5`
 (2, 3, '2019-03-25', NULL, '0', '1900'),
 (3, 4, '2019-03-25', NULL, 'pLVPF9R8', '850'),
 (4, 5, '2019-03-25', NULL, '4W0NmXTn', '700'),
-(5, 6, '2019-03-25', NULL, 'mtne38gP', '500'),
+(5, 6, '2019-03-25', '726b4a9e82591dc0cdaf1b382356a76e.pdf', 'mtne38gP', '500'),
 (6, 7, '2019-03-25', NULL, '40Llb1FY', '700'),
-(7, 10, '2019-03-26', '788c856f9725526ac39f4fa70b4cb1e8.pdf', '23c50b7dc8a90a53dd0d33a719e0d764', '1650'),
+(7, 10, '2019-03-26', '788c856f9725526ac39f4fa70b4cb1e8.pdf', '23c50b7d', '1650'),
 (8, 11, '2019-03-26', '367a05b4fd4c6ae72ede38c424f6587e.pdf', 'SLq0ThRI', '650'),
-(9, 12, '2019-03-28', '872cf1c89eaff4cf60973564c5dbc7a7.pdf', 'IGa9zeDr', '400');
+(9, 12, '2019-03-28', '872cf1c89eaff4cf60973564c5dbc7a7.pdf', 'IGa9zeDr', '400'),
+(10, 13, '2019-04-02', NULL, 'TGzbd1Es', '1650');
 
 -- --------------------------------------------------------
 
@@ -270,7 +276,7 @@ INSERT INTO `ex_menu` (`id`, `sort`, `id_parent`, `id_page`, `url`, `target`, `n
 (1, 0, 0, NULL, NULL, NULL, NULL, 'Главное меню', ''),
 (104, 0, 83, 125, '', NULL, NULL, 'О нас', ''),
 (105, 0, 86, 122, '', '0', NULL, 'Обучение', ''),
-(108, 0, 0, 0, '', '0', 'Футер меню', 'Футер меню', 'Футер меню'),
+(108, 0, 0, 0, '', '0', 'Футер меню', 'Нижнее меню', 'Футер меню'),
 (109, 0, 108, 0, '', '0', 'Обучение', 'Обучение', 'Обучение'),
 (110, 0, 108, 0, '', '0', 'О компании', 'О компании', 'О компании'),
 (111, 0, 108, 0, '', '0', 'Партнеры', 'Партнеры', 'Партнеры'),

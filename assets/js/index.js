@@ -121,4 +121,15 @@ function click_medic_end(){
 
  });
 })
-// results show end
+function changeClass(id){
+              var change = document.getElementById("changeclass"+id);
+              if( change.classList.contains('fa-chevron-down') ){
+                change.classList.remove('fa-chevron-down');
+                change.classList.add('fa-chevron-up');
+              }
+              else
+                { change.classList.remove('fa-chevron-up');
+              change.classList.add('fa-chevron-down');
+            }
+          }
+

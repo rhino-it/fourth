@@ -8,7 +8,8 @@
 						<p>Кодовое слово может состоять только из одних цифр или цифр и букв латинского алфавита. (Кодовое слово введите без учета написания прописных и заглавных букв). Например, 1597346 или GR759YR.</p>
 					</div>
 					<form action="<?php echo base_url('index.php/pages/check_captcha') ?>" method="POST"  target="_blank">
-						<div class="results_footer">
+						<div class="results_footer "> 
+							<!-- rounded border border-primary -->
 							<div class="row">
 								<div class="col-md-6 col-sm-12 col-xs-12 box_border">
 									<div class="col-md-12">
