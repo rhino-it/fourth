@@ -51,7 +51,7 @@ function  ul_schedule_model($id){
 }
 //end Ular
 function  doctor_collective(){
-   $this->db->order_by('foto_thumb', 'ASC');
+   $this->db->order_by('id', 'DESC');
    $query = $this->db->where('id_type_page', 15);
    $query = $this->db->get('ex_page');
    return $query->result_array();     
@@ -130,6 +130,11 @@ function user_login_check($user_login,$user_password) {
 function about() {
     $query = $this->db->where('id','125');
     $query = $this->db->get('ex_page');   
+    return $query->result_array();
+}
+function navigation_doctor($id) {
+    $query = $this->db->where('id', 93);
+    $query = $this->db->get('ex_menu');   
     return $query->result_array();
 }
 } 

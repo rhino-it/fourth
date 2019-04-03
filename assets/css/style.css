@@ -990,10 +990,7 @@ ul {
 }
 .breadcrumb .active{
   color: #428BCA;
-}
-.noLink {
-  pointer-events: none;
-}
+
 .tbodyth{
   border-top: none !important;
 }

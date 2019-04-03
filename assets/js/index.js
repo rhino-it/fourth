@@ -1,4 +1,4 @@
-// menu fixed t1_li
+// menu fixed start
 $(document).ready(function($) {
     $nav = $('.fixed-div');
     $nav.css('width', $nav.outerWidth());
@@ -14,13 +14,13 @@ $(document).ready(function($) {
 });
 // menu fixed end
 
-// menu click pod_menu t1_li
+// menu click pod_menu start
 var castle = false;
 if ($(window).width()<990) {
     castle = true;
 }
 else {
-    castle = false
+    castle = false;
 }
 if (castle==true) {
     var a=document.querySelectorAll('.menu_click > li');
@@ -121,8 +121,6 @@ function click_medic_end(){
 
  });
 })
-// results show end
-
 function changeClass(id){
               var change = document.getElementById("changeclass"+id);
               if( change.classList.contains('fa-chevron-down') ){
@@ -134,3 +132,4 @@ function changeClass(id){
               change.classList.add('fa-chevron-down');
             }
           }
+
