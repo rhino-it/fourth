@@ -40,11 +40,10 @@
 </div>
 <div class="container">
 	<div class="row">
-		<div class="col-md-8">
-			<div class="row">
+		<div class="col-md-9" style="padding-right: 60px;">
 				<?php 
+				if ($inf['gallery']!=FALSE) {
 						echo '  						
-						<div class="row">
 							<div class="slider-for">
 							';
 						$arr = explode(",", $inf['gallery']);						 
@@ -59,11 +58,10 @@
 							echo '<div class="img2" style="background-image: url('.base_url().'assets/images/photos/thumb/'.$img.');"></div>';
 						}
 						echo '
-							</div>
 						</div>
 						';
+				}
 						 ?>
-			</div>
 		</div>
 	</div>
 </div>

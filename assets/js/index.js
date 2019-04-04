@@ -121,6 +121,8 @@ function click_medic_end(){
 
  });
 })
+
+
 function changeClass(id){
               var change = document.getElementById("changeclass"+id);
               if( change.classList.contains('fa-chevron-down') ){
@@ -132,4 +134,4 @@ function changeClass(id){
               change.classList.add('fa-chevron-down');
             }
           }
-
+        
