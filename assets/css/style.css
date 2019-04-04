@@ -489,6 +489,10 @@ ul {
   border-radius: 20px;
   padding: 20px ;
 }
+.results .results_footer .box_border {
+  border: 1px solid #87ceeb;
+  border-radius: 20px;
+}
 .results .results_footer .box_border .box {
   border: 0;
   width: 70%;
@@ -721,7 +725,6 @@ ul {
   padding: 40px 0;
 }
 .paddding {
-  flex-basis: 33.33%;
   padding: 0 15px;
   margin-bottom: 40px;
 }
@@ -1010,9 +1013,13 @@ ul {
 .breadcrumb .active{
   color: #428BCA;
 }
-.noLink {
-  pointer-events: none;
-}
 .tbodyth{
   border-top: none !important;
+}
+.bordertd{
+  border-top: none !important;
+  padding-top: 0 !important;
+}
+.namei{
+  float: right !important;
 }

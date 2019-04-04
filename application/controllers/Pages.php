@@ -12,6 +12,8 @@ class Pages extends CI_Controller {
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['main_page_news'] = $this->Get_model->main_page_news();
 		$data['uslugi'] = $this->Get_model->uslugi();
+
+		$data['slider'] = $this->Get_model->slider(23);
 		
 		$this->load->view('header_view',$data);
 		$this->load->view('slider_view');
@@ -126,16 +128,20 @@ class Pages extends CI_Controller {
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
+		$data['ul_menu'] = $this->Get_model->ul_menu($id);	
 		$data['doctor_collective'] = $this->Get_model->doctor_collective();
+
 		$this->load->view('header_view',$data);
-		$this->load->view('staff_view');
+		$this->load->view('staff_view',$data);
 		$this->load->view('footer_view');
 	}
 	public function doctor($id=0)	{
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
+		$data['navigation'] = $this->Get_model->uslugi_detail($id);
 		$data['doctor'] = $this->Get_model->doctor($id);
+
 		$this->load->view('header_view',$data);
 		$this->load->view('doctor_view',$data);
 		$this->load->view('footer_view');
@@ -146,6 +152,8 @@ class Pages extends CI_Controller {
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['inf'] = $this->Get_model->inf($id);
 		$data['uslugi'] = $this->Get_model->uslugi();
+		$data['ul_menu'] = $this->Get_model->ul_menu($id);
+
 		$this->load->view('header_view',$data);
 		$this->load->view('content_view',$data);
 		$this->load->view('footer_view');

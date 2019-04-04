@@ -143,7 +143,7 @@
 												<div class="col-1" style="padding-top: 2%;">С</div>
 												<div class="col-5"><input type="date" class="form-control" id="ot" name="ot" value="<?php
 												$start_date = date('Y-m-d', mktime(0, 0, 0, date("m"), 1, date("Y")));
-												 echo $start_date; ?>"></div>
+												echo $start_date; ?>"></div>
 												<div class="col-1" style="padding-top: 2%; padding-left: 5px;">ПО</div>
 												<div class="col-5"><input type="date" class="form-control" id="do" name="do" value="<?php echo date('Y-m-d');?>"></div>
 											</div>
@@ -183,27 +183,29 @@
 						}						
 						function id_pat(id)
 						{	
-						var i_p = document.getElementById('id_patients');	
+							var i_p = document.getElementById('id_patients');	
 							i_p.value=id;													
 						}
-					</script>
-					<script type="text/javascript">	
-					 $('.slider-for').slick({
-					  slidesToShow: 1,
-					  slidesToScroll: 1,
-					  arrows: false,
-					  fade: true,
-					  asNavFor: '.slider-nav'
+
+						
+				</script>
+				<script type="text/javascript">	
+					$('.slider-for').slick({
+						slidesToShow: 1,
+						slidesToScroll: 1,
+						arrows: false,
+						fade: true,
+						asNavFor: '.slider-nav'
 					});
 					$('.slider-nav').slick({
-					  slidesToShow: 4,
-					  slidesToScroll: 1,
-					  asNavFor: '.slider-for',
-					  dots: true,
-					  arrows: true,
-					  centerMode: true,
-					  focusOnSelect: true
+						slidesToShow: 4,
+						slidesToScroll: 1,
+						asNavFor: '.slider-for',
+						dots: true,
+						arrows: true,
+						centerMode: true,
+						focusOnSelect: true
 					});
-					</script>
-				</body>
-				</html>
+				</script>
+			</body>
+			</html>
