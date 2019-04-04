@@ -15,24 +15,20 @@
 					<!-- The slideshow -->
 
 					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<div class="img_carousel" style="background-image: url('<?php echo base_url(); ?>assets/images/slider/1.jpg');"></div>
+						<?php 
+						$i=0;
+						foreach ($slider as $slide) {
+						?>
+
+						<div class="carousel-item <?php if ($i==0) echo 'active';?>">
+							<div class="img_carousel" style="background-image: url('<?php echo base_url(); ?>assets/images/photos/<?php echo $slide['foto'];?>');"></div>
 	 						<div class="carousel-caption">
-								<h3><b>Профессиональная забота о Вашем здоровье</b></h3>
+								<h3><b><?php echo $slide['tema_ru'];?></b></h3>
 							</div>
 						</div>
-						<div class="carousel-item">
-							<div class="img_carousel" style="background-image: url('<?php echo base_url(); ?>assets/images/slider/2.jpg');"></div>
-							<div class="carousel-caption">
-								<h3><b>Высокоточная диагностика по японским технологиям</b></h3>
-							</div>
-						</div>
-						<div class="carousel-item">
-							<div class="img_carousel" style="background-image: url('<?php echo base_url(); ?>assets/images/slider/3.jpg');"></div>
-							<div class="carousel-caption">
-								<h3><b>Инновационно-интеграционные подходы в обучении</b></h3>							
-							</div>
-						</div>
+						<?php
+$i=1;
+					} ?>
 					</div>
 
 					<!-- Left and right controls -->

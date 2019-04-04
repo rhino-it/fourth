@@ -993,3 +993,10 @@ ul {
 .tbodyth{
   border-top: none !important;
 }
+.bordertd{
+  border-top: none !important;
+  padding-top: 0 !important;
+}
+.namei{
+  float: right !important;
+}
