@@ -2,7 +2,7 @@
 	<div class="container">
 		<ol class="breadcrumb">
 			<li><a href="<?php echo base_url(); ?>"> Главная <span style="padding-right: 5px;">/</span></a></li>
-			<li><a href="#"> Архив<span style="padding-right: 5px;">/</span></a></li>
+			<li><a href="<?php echo base_url().'index.php/pages/arhiv'; ?>"> Архив <span style="padding-right: 5px;">/</span></a></li>
 
 		</ol>
 		<h2 class="service">Архив</h2>
