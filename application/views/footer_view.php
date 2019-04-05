@@ -2,35 +2,41 @@
 	<div class="container">
 		<h3 style="color: #fff;letter-spacing: 5px">Medical Clinic</h3>
 		<div class="row foooter no-gutters">
-			<div class="col-md-3">
-				<div><span class="foot_title"><i>Обучение</i></span></div>
-				<div><a href=""><i class="anim_border">Тематический календарь циклов</i></a></div>
-				<div><a href=""><i class="anim_border">Цены</i></a></div>
-				<div><a href=""><i class="anim_border">Литература</i></a></div>
-				<div><a href=""><i class="anim_border">Клинические случаи</i></a></div>
-				<div><a href=""><i class="anim_border">Фотоархив</i></a></div>
-				<div><a href=""><i class="anim_border">Фонд тестовых заданий</i></a></div>
+			<?php 
+			foreach ($footer_menu as $f_menu) {
+				$footer_under_menu = $this->Get_model->md_menu($f_menu['id']);
+			 ?>
+			<div class="col">
+				<div><span class="foot_title"><i><?php echo $f_menu['name_ru'];  ?></i></span></div>
+				<?php
+				if ($f_menu['id_page']<1) {
+				  foreach ($footer_under_menu as $f_u_menu){ 
+				 ?>
+				<div><a href="
+					<?php 
+					if($f_u_menu['url']=='') {
+									echo base_url().'index.php/pages/ulpage/'.$f_u_menu['id'];
+								}
+								else{
+								  echo $f_u_menu['url']; 
+								}	
+				 ?>
+				 "><i class="anim_border"><?php echo $f_u_menu['name_ru']; ?></i></a></div>
+			<?php }}
+			else{
+				$footer_content = $this->Get_model->footer_content($f_menu['id_page']);
+				foreach ($footer_content as $f_content){ 
+			?>	
+			<div>
+			<?php	
+					echo $f_content['page_text_ru'];
+				}
+				?>
 			</div>
-			<div class="col-md-2">
-				<div><span class="foot_title"><i>О компании</i></span></div>
-				<div><a href=""><i class="anim_border">Миссия</i></a></div>
-				<div><a href=""><i class="anim_border">История</i></a></div>
-				<div><a href=""><i class="anim_border">Преимущества</i></a></div>
-				<div><a href=""><i class="anim_border">Лицензии</i></a></div>
-				<div><a href=""><i class="anim_border">Сертификаты</i></a></div>
+				<?php
+			} ?>
 			</div>
-			<div class="col-md-2"><span class="foot_title"><i>Партнеры</i></span><div><a href=""><i class="anim_border">Fair Medical Japan Co LTD</i></a></div>
-			<div><a href=""><i class="anim_border">ОсОО «Орда Мед»</i></a></div>
-			<div><a href=""><i class="anim_border">CPI- Germany</i></a></div>
-			<div><a href=""><i class="anim_border">Samsung Healthcare</i></a></div></div>
-
-			<div class="col-md-2"><span class="foot_title"><i>Мобильная УЗД</i></span></div>
-			<div class="col-md-3">
-				<span class="foot_title"><i>Наши данные</i></span>
-				<div><a href=""><i class="anim_border"><i class="fa fa-map-marker"></i> г. Ош, улица Исанова 31/35</i></a></div>
-				<div><a href=""><i class="anim_border"><i class="fa fa-envelope-open"></i>  mk_clinic@gmail.com</i></a></div>
-				<div><a href=""><i class="anim_border"><i class="fa fa-phone"></i> + 996(772)424008, + 996(0770)450654</i></a></div>
-			</div>
+			<?php } ?>
 		</div>
 	</div>
 	<span style="color: #fff;background: #0072EF;margin-bottom:-20px;padding-bottom: 0;font-family: Calibri">Разработка IT-Academy© oshsu 2019.</span>
