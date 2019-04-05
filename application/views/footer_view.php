@@ -169,6 +169,40 @@
 							</div>
 						</div>
 					</div>
+
+
+					<div class="modal fade" id="datamodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header ">
+									<h5 class="modal-title text-center 	w-100" id="exampleModalLabel">Данные пациента</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form class="form-horizontal" method="post" id="patients_file" enctype="multipart/form-data" action="<?php echo base_url('index.php/pages/add_result'); ?>" >
+										<div class="form-group">
+											<label for="file" class="col-sm-2 control-label">Файл</label>
+											<div class="col-sm-8">
+												<input type="file" name="pdf_file" id="file">
+												<input type="hidden" name="id_patients" id="id_patients" value="">
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-sm-offset-2 col-sm-8">
+												<button type="submit" id="submit" class="btn btn-info">Добавить</button> 
+											</div>
+										</div>
+									</form>
+								</div>
+								<!-- <div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+									<button type="button" class="btn btn-primary">Вход</button>
+								</div> -->
+							</div>
+						</div>
+					</div>
 					<!-- Фильтрация по дате -->
 
 					<!-- Model end -->
@@ -215,3 +249,4 @@
 				</script>
 			</body>
 			</html>
+

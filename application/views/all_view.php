@@ -29,7 +29,7 @@
 				<td><a href="<?php echo base_url('assets/pdf/'.$patients['result']); ?>" style="color: blue;" target="blank"><?php echo $patients['result']; ?></a></td>
 				<td><?php echo $patients['md5']; ?></td>
 				<td ><?php echo $patients['sum']; ?> сом</td>
-				<td><a onclick="id_pat(<?php echo $patients['id']; ?>)"  href="" data-toggle="modal" data-target="#" class="btn btn-sm btn-secondary" role="button" >Протокол</a>
+				<td><a onclick="id_pat(<?php echo $patients['id']; ?>)"  href="" data-toggle="modal" data-target="#datamodal" class="btn btn-sm btn-secondary" role="button" >Протокол</a>
 					<a onclick="id_pat(<?php echo $patients['id']; ?>)"  href="" data-toggle="modal" data-target="#inputmodal" class="btn btn-sm btn-info" role="button" >Добавить</a>
 				</td>
 
