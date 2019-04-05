@@ -1,6 +1,5 @@
 <div class="content">
 		<div class="container">
-			<div class="row">
 				<div class="results">
 					<div class="results_inf">
 						<h3>Получить результаты исследования</h3>
@@ -8,29 +7,12 @@
 						<p>Кодовое слово может состоять только из одних цифр или цифр и букв латинского алфавита. (Кодовое слово введите без учета написания прописных и заглавных букв). Например, 1597346 или GR759YR.</p>
 					</div>
 					<form action="<?php echo base_url('index.php/pages/check_captcha') ?>" method="POST"  target="_blank">
-<<<<<<< HEAD
-					<!-- <table border="1">
-						<tr>
-							<td>
-								<div class="title">Кодовое слово</div>
-								<input id="code" type="text" class="form-control" name="Codeword" placeholder="Введите кодовое слово">
-							</td>
-							<td>
-								<span class="capt">
-									<?php echo $image; ?>
-								</span>
-								<input type="text" name="text_captcha" class="form-control" placeholder="Введите код указанный на картинке" id="code_inp">
-								<button class="btn btn-info btn-sm" type="submit">Отправить</button>
-							</td>
-						</tr>
-					</table> -->
-						<div class="results_footer">
-=======
+
 						<div class="results_footer "> 
-							<!-- rounded border border-primary -->
->>>>>>> 990b26513d254167aeda22c15df9f219567b1511
+					
 							<div class="row">
-								<div class="col-md-12 col-sm-12 col-xs-12 box_border">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="box_border">
 									<div class="row">
 										<div class="col-md-6">
 											<div class="box">
@@ -41,6 +23,7 @@
 											</div>
 										</div>
 										<div class="col-md-6">
+											<div class="row">
 											<div class="col-md-12">
 												<span class="capt">
 													<?php echo $image; ?>
@@ -54,39 +37,17 @@
 													</div>										
 												</div>
 											</div>
-										</div>
-<<<<<<< HEAD
-<!-- 									<div class="mb-4 col-md-12">
-=======
-									</div>									
-								</div>
-								<!-- <div class="col-md-6 col-sm-12 col-xs-12">
-									<div class="mb-4 col-md-12">
->>>>>>> 990b26513d254167aeda22c15df9f219567b1511
-										<div class="box box_1">
-											<div class="title">
-											Получить результаты на почту	
-											<span class="check_box">
-												<input type = 'checkbox' id = 'cb1' onchange = 'showOrHide("cb1", "cat1");'/>
-												<span id = 'cat1' style = 'display: none;'>
-													<input type="text" class="form-control" placeholder="Ваша почта" id="email">
-												</span>
-												</span>								
-											</div>									
+											</div>
 										</div>
 
-										</div>
-									</div>									
-<<<<<<< HEAD
-								</div>
-							</div> -->
-=======
-								</div> -->
+								</div> 
+
+							</div>
 							</div>
 						</div>
->>>>>>> 990b26513d254167aeda22c15df9f219567b1511
+						</div>
 					</form>
 				</div>
-			</div>
+			
 		</div>
 	</div>
