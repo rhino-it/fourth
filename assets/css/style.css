@@ -2,7 +2,6 @@
   box-sizing: border-box;
 }
 body {
-  font-family: Arial;
   font-size: 14px;
   color: #000;
   font-family: 'Open Sans', sans-serif;
@@ -17,13 +16,6 @@ a:hover {
 }
 img {
   width: 100%;
-}
-li {
-  list-style: none;
-}
-ul {
-  padding: 0;
-  margin: 0;
 }
 .top {
   background-color: #00D2F1;
@@ -323,6 +315,7 @@ ul {
 .navbar-nav > li {
   position: relative;
   transition: .3s;
+  list-style: none;
 }
 .navbar-nav > li .q1 {
   opacity: 0;
@@ -333,6 +326,17 @@ ul {
   top: 250%;
   left: 0%;
   box-shadow: 0px 10px 20px #ddd;
+}
+.navbar-nav > li ul li {
+  list-style: none;
+}
+.navbar-nav > li ul {
+  margin: 0;
+  padding: 0;
+}
+.navbar-nav > li ul li ul {
+  margin: 0;
+  padding: 0;
 }
 .navbar-nav > li ul li a {
   background: #fff;
@@ -837,6 +841,11 @@ ul {
 .service .sidebar ul {
   text-align: left;
   padding: 5px;
+  margin: 0;
+  padding: 0;
+}
+.service .sidebar ul li {
+  list-style: none;
 }
 .service .sidebar ul li a {
   transition: .4s;

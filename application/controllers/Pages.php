@@ -10,7 +10,7 @@ class Pages extends CI_Controller {
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
-		$data['main_page_news'] = $this->Get_model->main_page_news();
+		$data['main_page_news'] = $this->Get_model->main_page_news(1,3);
 		$data['uslugi'] = $this->Get_model->uslugi();
 
 		$data['slider'] = $this->Get_model->slider(23);
@@ -104,6 +104,7 @@ class Pages extends CI_Controller {
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['ul_menu'] = $this->Get_model->ul_menu($id);
 		$data['footer_menu'] = $this->Get_model->md_menu(108);
+		$data['uslugi'] = $this->Get_model->uslugi();
 
 		$this->load->view('header_view',$data);
 		$this->load->view('schedule_view',$data);
