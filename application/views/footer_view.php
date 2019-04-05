@@ -180,26 +180,9 @@
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
-								<div class="modal-body">
-									<form class="form-horizontal" method="post" id="patients_file" enctype="multipart/form-data" action="<?php echo base_url('index.php/pages/add_result'); ?>" >
-										<div class="form-group">
-											<label for="file" class="col-sm-2 control-label">Файл</label>
-											<div class="col-sm-8">
-												<input type="file" name="pdf_file" id="file">
-												<input type="hidden" name="id_patients" id="id_patients" value="">
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-sm-offset-2 col-sm-8">
-												<button type="submit" id="submit" class="btn btn-info">Добавить</button> 
-											</div>
-										</div>
-									</form>
+								<div class="modal-body" id="data_patient">
+									
 								</div>
-								<!-- <div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-									<button type="button" class="btn btn-primary">Вход</button>
-								</div> -->
 							</div>
 						</div>
 					</div>
@@ -226,7 +209,16 @@
 							var i_p = document.getElementById('id_patients');	
 							i_p.value=id;													
 						}
+						function data_patient(id)
+						{
 
+							$.ajax({
+								url: BASE_URL + 'index.php/ajax/data_patient/'+id,
+								success: function (data) {
+									$('#data_patient').html(data);
+								}
+							});
+						}
 						
 				</script>
 				<script type="text/javascript">	

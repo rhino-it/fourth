@@ -294,6 +294,10 @@ class Pages extends CI_Controller {
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['footer_menu'] = $this->Get_model->md_menu(108);
+
+		// $data['data_patient'] = $this->Get_model->data_patient($id);
+
+
 		$config['base_url'] = base_url() . 'pages/patients/';
 		if (isset($_POST['ot']) AND isset($_POST['do'])) {
 			$_SESSION['ot']=$_POST['ot'];
