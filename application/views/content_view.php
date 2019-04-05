@@ -1,5 +1,6 @@
 <div class="content">
 	<div class="container">
+		<div style="min-height: 500px;">
 				<?php foreach ($inf as $inf): ?>
 		<ol class="breadcrumb">
 			<?php
@@ -36,6 +37,7 @@
 				</ul>
 			</div>
 		</div>
+</div>
 	</div>
 </div>
 <div class="container">

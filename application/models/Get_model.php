@@ -143,4 +143,16 @@ function slider($id) {
       $query = $this->db->get('ex_page');
       return $query->result_array();
 }
+function footer($id) {
+     $query = $this->db->order_by('id', 'ASC');
+      $query = $this->db->where('id_type_page',$id);
+      $query = $this->db->get('ex_page');
+      return $query->result_array();
+}
+function footer_content($id) {
+     $query = $this->db->order_by('id', 'ASC');
+      $query = $this->db->where('id',$id);
+      $query = $this->db->get('ex_page');
+      return $query->result_array();
+}
 } 

@@ -14,12 +14,14 @@ class Pages extends CI_Controller {
 		$data['uslugi'] = $this->Get_model->uslugi();
 
 		$data['slider'] = $this->Get_model->slider(23);
+
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 		
 		$this->load->view('header_view',$data);
 		$this->load->view('slider_view');
 		$this->load->view('news_view');
 		$this->load->view('middle_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}	
 	public function user_come_in()	{
 		$this->load->model('Get_model');
@@ -69,26 +71,30 @@ class Pages extends CI_Controller {
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
+
 		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
 		$this->load->view('results_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 	public function uzi($id=0)	{
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 		$this->load->view('header_view',$data);
 		$this->load->view('uzi_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 	public function phizio($id=0)	{
 		$this->load->model('Get_model');
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 		$this->load->view('header_view',$data);
 		$this->load->view('phizio_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 
 //begin Ular
@@ -97,10 +103,11 @@ class Pages extends CI_Controller {
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['ul_menu'] = $this->Get_model->ul_menu($id);
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 
 		$this->load->view('header_view',$data);
 		$this->load->view('schedule_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 //end Ular
 
@@ -109,20 +116,22 @@ class Pages extends CI_Controller {
 		$this->load->view('head_view');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['schedule_model'] = $this->Get_model->schedule_model($id);
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 		$this->load->view('header_view',$data);
 		$this->load->view('schedule_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 	public function recipes($id=0)	{
 		$_SESSION['counter_medic']=0;
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['recipes_category'] = $this->Get_model->recipes_category();
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 
 		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
 		$this->load->view('recipes_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 	public function staff($id=0)	{
 		$this->load->model('Get_model');
@@ -130,10 +139,11 @@ class Pages extends CI_Controller {
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['ul_menu'] = $this->Get_model->ul_menu($id);	
 		$data['doctor_collective'] = $this->Get_model->doctor_collective();
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 
 		$this->load->view('header_view',$data);
 		$this->load->view('staff_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 	public function doctor($id=0)	{
 		$this->load->model('Get_model');
@@ -141,10 +151,11 @@ class Pages extends CI_Controller {
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['navigation'] = $this->Get_model->uslugi_detail($id);
 		$data['doctor'] = $this->Get_model->doctor($id);
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 
 		$this->load->view('header_view',$data);
 		$this->load->view('doctor_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 	public function page($id=0)	{
 		$this->load->model('Get_model');
@@ -153,15 +164,17 @@ class Pages extends CI_Controller {
 		$data['inf'] = $this->Get_model->inf($id);
 		$data['uslugi'] = $this->Get_model->uslugi();
 		$data['ul_menu'] = $this->Get_model->ul_menu($id);
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 
 		$this->load->view('header_view',$data);
 		$this->load->view('content_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 	public function arhiv($id=0)	{
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['ul_menu'] = $this->Get_model->ul_menu($id);
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 
 		$config['base_url'] = base_url() . 'pages/arhiv/';
 
@@ -202,28 +215,30 @@ class Pages extends CI_Controller {
 		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
 		$this->load->view('arhiv_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 	public function uslugi_detail($id=0)	{
 		$this->load->model('Get_model');
 		$data['uslugi_detail'] = $this->Get_model->uslugi_detail($id);
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['uslugi'] = $this->Get_model->uslugi();
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 
 		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
 		$this->load->view('uzi_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 	public function about($id=0)	{
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
 		$data['about'] = $this->Get_model->about();
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 
 		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
 		$this->load->view('about_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 	public function check_captcha($random_code=0)	{	
 		$random_code=$this->input->post('Codeword');
@@ -277,6 +292,7 @@ class Pages extends CI_Controller {
 		$this->load->view('head_view');	
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
+		$data['footer_menu'] = $this->Get_model->md_menu(108);
 		$config['base_url'] = base_url() . 'pages/patients/';
 		if (isset($_POST['ot']) AND isset($_POST['do'])) {
 			$_SESSION['ot']=$_POST['ot'];
@@ -332,7 +348,7 @@ class Pages extends CI_Controller {
 
 		$this->load->view('header_view',$data);
 		$this->load->view('all_view',$data);
-		$this->load->view('footer_view');
+		$this->load->view('footer_view',$data);
 	}
 
 	public function medicoment_insert(){
