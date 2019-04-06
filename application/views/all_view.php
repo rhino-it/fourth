@@ -29,8 +29,7 @@
 				<td><a href="<?php echo base_url('assets/pdf/'.$patients['result']); ?>" style="color: blue;" target="blank"><?php echo $patients['result']; ?></a></td>
 				<td><?php echo $patients['md5']; ?></td>
 				<td ><?php echo $patients['sum']; ?> сом</td>
-				<!-- <td><a onclick="id_pat(<?php echo $patients['id']; ?>)"  href="" data-toggle="modal" data-target="#" class="btn btn-sm btn-secondary" role="button" >Протокол</a> -->
-					<td><div onclick="id_pat(<?php echo $patients['id']; ?>)" style="border: 1px solid red;">qwer</div>
+				<td><a onclick="id_pat(<?php echo $patients['id']; ?>)"  href="" data-toggle="modal" data-target="#" class="btn btn-sm btn-secondary" role="button" >Протокол</a>
 					<a onclick="id_pat(<?php echo $patients['id']; ?>)"  href="" data-toggle="modal" data-target="#inputmodal" class="btn btn-sm btn-info" role="button" >Добавить</a>
 				</td>
 
@@ -89,29 +88,3 @@
 	</ul>
 </div>
 </div>
-<script>
-	function id_pat(id)
-	{
-		// var b_u="<?php echo base_url().'index.php/ajax/test';?>";
-		// $.ajax({
-		// 	url: BASE_URL + id,
-		// 	success: function (data) {
-		// 		$('#analys').html(data);
-		// 	}
-		// });
-		alert('РАБОТАЕТ!');
-	}		
-
-
-
-			function a(){
-				var s=document.getElementById("t1").value;
-					$('.result').html('<img src="QyQ9.gif" width="100px" alt="">');
-			$.ajax({
-				url: 'get.php?text='+s,
-				success: function(data){
-					$('.result').html(data);
-				}
-				})}
-
-</script>

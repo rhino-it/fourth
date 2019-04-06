@@ -134,15 +134,3 @@ function changeClass(id){
   change.classList.add('fa-chevron-down');
 }
 }
-
-  function id_pat(id)
-  {
-    // var b_u="<?php echo base_url().'index.php/ajax/test';?>";
-    // $.ajax({
-    //  url: BASE_URL + id,
-    //  success: function (data) {
-    //    $('#analys').html(data);
-    //  }
-    // });
-    alert('РАБОТАЕТ!');
-  } 
