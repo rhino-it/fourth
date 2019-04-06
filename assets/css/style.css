@@ -1032,3 +1032,16 @@ img {
 .namei{
   float: right !important;
 }
+.leftside{
+  font-weight: bold;
+  font-style: italic;
+  color: blue;
+  font-size: 12px;
+  font-family: Tahoma;
+}
+.rightside{
+  font-weight: bold;
+  color: blue;
+  font-size: 13px;
+  font-family: Tahoma;
+}

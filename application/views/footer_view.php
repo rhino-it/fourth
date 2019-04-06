@@ -209,11 +209,10 @@
 							var i_p = document.getElementById('id_patients');	
 							i_p.value=id;													
 						}
-						function data_patient(id)
+						function data_patient(id_parent,id)
 						{
-
 							$.ajax({
-								url: BASE_URL + 'index.php/ajax/data_patient/'+id,
+								url: BASE_URL + 'index.php/ajax/data_patient/'+id_parent+'/'+id,
 								success: function (data) {
 									$('#data_patient').html(data);
 								}
