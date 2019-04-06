@@ -156,4 +156,9 @@ function footer_content($id) {
       $query = $this->db->get('ex_medic_patient');
       return $query->result_array();
  }
+  function last_data_patient($id) {
+      $query = $this->db->where('id',$id);
+      $query = $this->db->get('ex_medic_patient_data');
+      return $query->result_array();
+ }
 } 
