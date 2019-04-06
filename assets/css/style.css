@@ -1032,6 +1032,7 @@ img {
 .namei{
   float: right !important;
 }
+
 .leftside{
   font-weight: bold;
   font-style: italic;
@@ -1044,4 +1045,10 @@ img {
   color: blue;
   font-size: 13px;
   font-family: Tahoma;
+}
+.minheight{
+  min-height: 300px;
+}
+.minheight2{
+    min-height: 50px;
 }

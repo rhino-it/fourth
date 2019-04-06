@@ -22,7 +22,7 @@
 		 foreach ($schedule_model as $s_l) {
 	?>
 		<div class="row service">				
-		<div class="title title_header"><?php echo $s_l['tema_ru']; ?></div>
+		<div class="title title_header minheight2"><?php echo $s_l['tema_ru']; ?></div>
 			<div class="main_news">
 				<?php 
 		 	if ($s_l['foto']!=FALSE) {
@@ -36,10 +36,23 @@
 						echo $s_l['tema_ru'];
 					 ?>
 				</div> -->
-				<div class="text">
-					<?php echo $s_l['page_text_ru']; ?>
+				<div class="text minheight">		
+					<?php
+					if ($s_l['page_text_ru']!='') {
+						echo $s_l['page_text_ru']; 
+					 } 	
+					?>
 				</div>
-			<?php } ?>		
+			</div>
+
+			<div class="sidebar">
+				<ul>
+					<?php 
+						foreach ($uslugi as $u) {
+							echo '<li><a href="'.base_url('index.php/pages/uslugi_detail/'.$u['id']).'">'.$u['tema_ru'].'</a></li>';
+						}
+				  ?>
+				</ul>
 			</div>
 <?php 
 if ($s_l['gallery']!=FALSE) {
@@ -73,14 +86,8 @@ if ($s_l['gallery']!=FALSE) {
 <?php 
 				}
  ?>
-			<div class="sidebar">
-				<ul>
-					<?php 
-						foreach ($uslugi as $u) {
-							echo '<li><a href="'.base_url('index.php/pages/uslugi_detail/'.$u['id']).'">'.$u['tema_ru'].'</a></li>';
-						}
-				  ?>
-				</ul>
-			</div>
 		</div>
+<?php 
+			}
+ ?>
 </div>
