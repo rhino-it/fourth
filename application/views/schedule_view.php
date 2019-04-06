@@ -36,10 +36,23 @@
 						echo $s_l['tema_ru'];
 					 ?>
 				</div> -->
-				<div class="text">
-					<?php echo $s_l['page_text_ru']; ?>
+				<div class="text">		
+					<?php
+					if ($s_l['page_text_ru']!='') {
+						echo $s_l['page_text_ru']; 
+					 } 	
+					?>
 				</div>
-			<?php } ?>		
+			</div>
+
+			<div class="sidebar">
+				<ul>
+					<?php 
+						foreach ($uslugi as $u) {
+							echo '<li><a href="'.base_url('index.php/pages/uslugi_detail/'.$u['id']).'">'.$u['tema_ru'].'</a></li>';
+						}
+				  ?>
+				</ul>
 			</div>
 <?php 
 if ($s_l['gallery']!=FALSE) {
@@ -73,14 +86,8 @@ if ($s_l['gallery']!=FALSE) {
 <?php 
 				}
  ?>
-			<div class="sidebar">
-				<ul>
-					<?php 
-						foreach ($uslugi as $u) {
-							echo '<li><a href="'.base_url('index.php/pages/uslugi_detail/'.$u['id']).'">'.$u['tema_ru'].'</a></li>';
-						}
-				  ?>
-				</ul>
-			</div>
 		</div>
+<?php 
+			}
+ ?>
 </div>
