@@ -23,14 +23,24 @@
 			<?php 
 				foreach ($doctor_collective as $d_c) {
 			?>
-			<div class="col-md-4">
-				
+			<div class="col-md-4">				
 			<div class="paddding">
 				<div class="content-doc" onclick="location.href='<?php echo base_url().'index.php/pages/doctor/'.$d_c['id']; ?>'">
 					<div class="img" style="background-image: url(<?php echo base_url().'assets/images/photos/'.$d_c['foto'];?>);"></div>
 					<div class="text">
-						<h1><?php echo $d_c['tema_ru'] ?></h1>
-						<span><?php echo $d_c['tema_kg'] ?></span>						
+						<?php 
+							$text=$d_c['tema_ru'];
+							if (strpos($text, '/')) {
+								$t1=strpos($text, '/');
+								$name=substr($text, 0, $t1);
+								$position=substr($text, $t1+1);
+								echo '<h1>'.$name.'</h1>';
+								echo '<span>'.$position.'</span>';
+							}
+							else{
+								echo '<h1>'.$d_c['tema_ru'].'</h1>';
+							}
+						?>
 					</div>
 				</div>				
 			</div>
