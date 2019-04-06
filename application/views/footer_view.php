@@ -1,3 +1,4 @@
+
 <div class="footer">
 	<div class="container">
 		<h3 style="color: #fff;letter-spacing: 5px">Medical Clinic</h3>
@@ -39,8 +40,10 @@
 			<?php } ?>
 		</div>
 	</div>
-	<span style="color: #fff;background: #0072EF;margin-bottom:-20px;padding-bottom: 0;font-family: Calibri">Разработка IT-Academy© oshsu 2019.</span>
+	<span style="color: #fff;background: #0072EF;margin-bottom:-20px;padding-bottom: 0;font-family: Calibri">Разработка IT-Academy© OshSU 2019.</span>
 </div>
+
+
 <!-- Modal -->
 <!-- Логин -->
 <div class="modal fade" id="loginmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

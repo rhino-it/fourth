@@ -21,6 +21,11 @@
 		 $schedule_model = $this->Get_model->ul_schedule_model($value['id_page']);
 		 foreach ($schedule_model as $s_l) {
 	?>
+
+	
+
+
+
 		<div class="row service">				
 		<div class="title title_header minheight2"><?php echo $s_l['tema_ru']; ?></div>
 			<div class="main_news">
@@ -31,11 +36,7 @@
 		 			<?php 
 		 	}
 				 ?>
-<!-- 				<div class="title">
-					<?php
-						echo $s_l['tema_ru'];
-					 ?>
-				</div> -->
+
 				<div class="text minheight">		
 					<?php
 					if ($s_l['page_text_ru']!='') {
@@ -90,4 +91,9 @@ if ($s_l['gallery']!=FALSE) {
 <?php 
 			}
  ?>
+ <?php 
+	if ($value['id_page']<1) {?>
+	<div class="minheights"></div>
+	<?php
+	 } ?>
 </div>

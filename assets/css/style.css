@@ -1052,3 +1052,6 @@ img {
 .minheight2{
     min-height: 50px;
 }
+.minheights{
+  min-height: 400px;
+}

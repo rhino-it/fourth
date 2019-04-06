@@ -70,9 +70,11 @@ class Pages extends CI_Controller {
 
 		$this->load->model('Get_model');
 		$data['main_menu'] = $this->Get_model->md_menu(1);
-
 		$data['footer_menu'] = $this->Get_model->md_menu(108);
-
+		$data['error'] = "";
+		if ($id==="error") {
+			$data['error'] = "Ваш результет еще не загрузили";
+		}
 		$this->load->view('head_view');
 		$this->load->view('header_view',$data);
 		$this->load->view('results_view',$data);
@@ -249,8 +251,12 @@ class Pages extends CI_Controller {
 		if ($a==$_SESSION['captcha_key'] && $data['code_check']==1) {
 			$query = $this->db->get_where('ex_medic_patient_data', array('md5' => $random_code));
 					foreach ($query->result_array() as $pdf) {
+						if ($pdf['result']=="") {
+							redirect(base_url('index.php/Pages/results/error'),'refresh');
+						}
+						else{
 				redirect(base_url('assets/pdf/'.$pdf['result']),'refresh');
-					}
+					}}
 			
 		}
 		else{

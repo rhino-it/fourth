@@ -19,7 +19,9 @@
 												<div class="title">Кодовое слово</div>				
 												<div class="inp">
 													<input id="code" type="text" class="form-control" name="Codeword" placeholder="Введите кодовое слово">
-												</div>										
+												</div>	
+
+												<div style="color: red"><?php echo $error; ?></div>									
 											</div>
 										</div>
 										<div class="col-md-6">

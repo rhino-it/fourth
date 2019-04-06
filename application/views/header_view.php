@@ -1,4 +1,4 @@
-<body>
+<body class="mh-100">
 	<div class="header">
 		<div class="top">
 			<div class="container">

@@ -26,7 +26,11 @@
 					<i class="fa fa-chevron-down namei" aria-hidden="true" id="changeclass<?php echo $patients['id']; ?>"></i> 
 				</a></td>
 				<td><?php echo $patients['data']; ?></td>
-				<td><a href="<?php echo base_url('assets/pdf/'.$patients['result']); ?>" style="color: blue;" target="blank"><?php echo $patients['result']; ?></a></td>
+				<td>
+					<?php if ($patients['result']!="") {?>
+					<a href="<?php echo base_url('assets/pdf/'.$patients['result']); ?>" style="color: blue;" target="blank">Результат</a>
+				<?php } ?>
+				</td>
 				<td><?php echo $patients['md5']; ?></td>
 				<td ><?php echo $patients['sum']; ?> сом</td>
 				<td><a onclick="data_patient(<?php echo $patients['id_patient'].','.$patients['id']; ?>);"  href="" data-toggle="modal" data-target="#datamodal" class="btn btn-sm btn-secondary"  >Протокол</a>
