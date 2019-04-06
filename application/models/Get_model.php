@@ -150,4 +150,10 @@ function footer_content($id) {
       $query = $this->db->get('ex_page');
       return $query->result_array();
 }
+
+ function data_patient($id) {
+      $query = $this->db->where('id',$id);
+      $query = $this->db->get('ex_medic_patient');
+      return $query->result_array();
+ }
 } 

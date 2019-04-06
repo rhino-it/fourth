@@ -169,6 +169,23 @@
 							</div>
 						</div>
 					</div>
+
+
+					<div class="modal fade" id="datamodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header ">
+									<h5 class="modal-title text-center 	w-100" id="exampleModalLabel">Данные пациента</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body" id="data_patient">
+									
+								</div>
+							</div>
+						</div>
+					</div>
 					<!-- Фильтрация по дате -->
 
 					<!-- Model end -->
@@ -192,7 +209,16 @@
 							var i_p = document.getElementById('id_patients');	
 							i_p.value=id;													
 						}
+						function data_patient(id)
+						{
 
+							$.ajax({
+								url: BASE_URL + 'index.php/ajax/data_patient/'+id,
+								success: function (data) {
+									$('#data_patient').html(data);
+								}
+							});
+						}
 						
 				</script>
 				<script type="text/javascript">	
@@ -215,3 +241,4 @@
 				</script>
 			</body>
 			</html>
+

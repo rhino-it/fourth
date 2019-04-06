@@ -10,6 +10,14 @@ class Ajax extends CI_Controller {
 		$data['query_category'] = $this->Get_model->id_category($id_category);
 		// $data['id_category'] =$id_category;
 		$this->load->view('ajax/category_option_view', $data);
-	}		
+	}
+
+	public function data_patient($id)
+	{	
+		$this->load->model('Get_model');
+		$data['data_patients'] = $this->Get_model->data_patient($id);
+		// $data['id_category'] =$id_category;
+		$this->load->view('ajax/data_patient_view', $data);
+	}				
 }
 ?>

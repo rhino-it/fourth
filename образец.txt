@@ -1,0 +1,8 @@
+.minheight{
+    min-height: 300px;
+}
+.minheight2{
+    min-height: 50px;
+}
+
+
