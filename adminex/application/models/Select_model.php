@@ -47,6 +47,7 @@ class Select_model extends CI_Model {
     function user_db($user = '', $pass = '') {
         $this->db->where('login', $user);
         $this->db->where('pass', md5($pass));
+        $this->db->where('type_user <', 3);
         $query = $this->db->get('ex_user');
         return $query->result_array();
     }
