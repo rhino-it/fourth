@@ -24,7 +24,17 @@
 							echo  '<li><a href="'.$row['url'].'">'.$row['name_ru'].' <span style="padding-right: 5px;">/</span></a></li>';
 						}
 					}
-					echo  '<li><a href="#"  class="active">'.$word.'</a></li>';
+					echo  '<li><a href="#"  class="active">';
+					$text=$word;
+					if (strpos($text, '/')) {
+						$t1=strpos($text, '/');
+						$name=substr($text, 0, $t1);
+						echo $name;
+					}
+					else{
+						echo  $word;								
+					}
+					echo '</a></li>';
 			?>
 		</ol>
 	</div>
@@ -35,7 +45,14 @@
 			?>
 			<div class="left">
 				<div class="bor">
-					<?php echo $d['tema_kg'] ?>
+					<?php 
+						$text=$d['tema_ru'];
+						if (strpos($text, '/')) {
+							$t1=strpos($text, '/');
+							$position=substr($text, $t1+1);
+							echo '<span>'.$position.'</span>';
+						}
+					?>
 				</div>
 				<img src="<?php echo base_url().'assets/images/photos/'.$d['foto']; ?>" alt="">
 			</div>

@@ -28,6 +28,7 @@
 				<?php endforeach ?>
 				</div></div>				
 			<div class="sidebar">
+				<h1>Услуги</h1>
 				<ul>
 					<?php 
 					foreach ($uslugi as $u) {
